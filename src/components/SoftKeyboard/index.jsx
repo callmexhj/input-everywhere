@@ -1,6 +1,7 @@
 import styles from './index.module.less'
 import NumberKeyboard from './NumberKeyboard'
 import AlphabetKeyboard from './AlphabetKeyboard'
+import LicensePlateKeyBoard from './LicensePlateKeyBoard'
 import { FullscreenExitOutlined } from '@ant-design/icons'
 
 const SoftKeyboard = ({
@@ -36,9 +37,13 @@ const SoftKeyboard = ({
                 <AlphabetKeyboard isCapitalized={isCapitalized} onInput={onInput} />
             )
         }
+        if (mode === 'licensePlate') {
+            return (
+                <LicensePlateKeyBoard onInput={onInput} />
+            )
+        }
     }
     const renderToolbar = () => {
-        console.log(showHide)
         return showHide && (
             <div className={styles.toolbar}>
                 <div></div>

@@ -12,6 +12,10 @@ const keyboardTypeOptions = [
   {
     label: '纯字母',
     value: 'alphabet',
+  },
+  {
+    label: '车牌',
+    value: 'licensePlate'
   }
 ]
 
@@ -23,6 +27,21 @@ const hideStatus = [
   {
     label: '否',
     value: false,
+  }
+]
+
+const sizeOptions = [
+  {
+    label: '大',
+    value: 'big',
+  },
+  {
+    label: '中',
+    value: 'default',
+  },
+  {
+    label: '小',
+    value: 'small',
   }
 ]
 
@@ -52,12 +71,22 @@ const HidePicker = ({ isShowHide, setIsShowHide }) => {
   )
 }
 
+const SizePicker = ({ size, setSize }) => {
+  const onSizeChanged = ({ target: { value } }) => {
+    setSize(value)
+  }
+  return (
+    <Radio.Group size="large" buttonStyle="solid" options={sizeOptions} optionType="button" value={size} onChange={onSizeChanged} />
+  )
+}
+
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
   const [isShowHide, setIsShowHide] = useState(false)
+  const [size, setSize] = useState('big')
   return (
     <>
-      <InputEverywhere size={'big'} keyboardMode={keyboardMode} showHide={isShowHide} onFocus={onFocus} onBlur={onBlur} />
+      <InputEverywhere size={size} keyboardMode={keyboardMode} showHide={isShowHide} onFocus={onFocus} onBlur={onBlur} />
       <div style={{ marginTop: 20 }}>
         <span>键盘类型：</span>
         <OptionPicker keyboardMode={keyboardMode} setKeyboardMode={setKeyboardMode} />
@@ -65,6 +94,10 @@ const TestDemoPage = () => {
       <div style={{ marginTop: 20 }}>
         <span>是否显示隐藏按钮：</span>
         <HidePicker isShowHide={isShowHide} setIsShowHide={setIsShowHide} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>输入框Size：</span>
+        <SizePicker size={size} setSize={setSize} />
       </div>
     </>
   )

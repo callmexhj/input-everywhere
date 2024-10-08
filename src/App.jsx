@@ -22,6 +22,7 @@ function InputEverywhere({ size, onFocus, onBlur, keyboardMode, showHide }) {
   }
 
   const inputContentProps = {
+    mode: keyboardMode,
     size,
     softKeyboardRef,
     inputValue,
