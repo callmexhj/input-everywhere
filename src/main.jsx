@@ -13,6 +13,6 @@ const onBlur = () => {
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <InputEverywhere size={'big'} onFocus={onFocus} onBlur={onBlur} />
+    <InputEverywhere size={'big'} keyboardMode={'number'} onFocus={onFocus} onBlur={onBlur} />
   </StrictMode>,
 )
