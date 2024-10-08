@@ -14,6 +14,18 @@ const keyboardTypeOptions = [
     value: 'alphabet',
   }
 ]
+
+const hideStatus = [
+  {
+    label: '是',
+    value: true,
+  },
+  {
+    label: '否',
+    value: false,
+  }
+]
+
 const onFocus = () => {
   console.log('focus')
 }
@@ -31,14 +43,28 @@ const OptionPicker = ({ keyboardMode, setKeyboardMode }) => {
   )
 }
 
+const HidePicker = ({ isShowHide, setIsShowHide }) => {
+  const onHideChanged = ({ target: { value } }) => {
+    setIsShowHide(value)
+  }
+  return (
+    <Radio.Group size="large" buttonStyle="solid" options={hideStatus} optionType="button" value={isShowHide} onChange={onHideChanged} />
+  )
+}
+
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
+  const [isShowHide, setIsShowHide] = useState(false)
   return (
     <>
-      <InputEverywhere size={'big'} keyboardMode={keyboardMode} onFocus={onFocus} onBlur={onBlur} />
+      <InputEverywhere size={'big'} keyboardMode={keyboardMode} showHide={isShowHide} onFocus={onFocus} onBlur={onBlur} />
       <div style={{ marginTop: 20 }}>
         <span>键盘类型：</span>
         <OptionPicker keyboardMode={keyboardMode} setKeyboardMode={setKeyboardMode} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>是否显示隐藏按钮：</span>
+        <HidePicker isShowHide={isShowHide} setIsShowHide={setIsShowHide} />
       </div>
     </>
   )
