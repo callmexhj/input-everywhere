@@ -12,7 +12,7 @@ const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue }) =>
     useEffect(() => {
         // 模拟Blur事件
         const handleClickOutside = (event) => {
-            if (inputRef.current && (!inputRef.current.contains(event.target) && !softKeyboardRef.current.contains(event.target))) {
+            if (inputRef.current && (!inputRef.current?.contains(event.target) && !softKeyboardRef.current?.contains(event.target))) {
                 // 软键盘隐藏逻辑
                 setFocus(false)
                 onBlur()
@@ -30,7 +30,7 @@ const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue }) =>
             onClick={handleFocus}
             ref={inputRef}
         >
-            {inputValue}
+        {inputValue}
         </div>
     )
 }

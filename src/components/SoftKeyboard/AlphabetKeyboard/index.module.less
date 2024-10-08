@@ -2,6 +2,7 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+
     .key {
         display: flex;
         justify-content: center;
@@ -10,14 +11,45 @@
         width: 30px;
         height: 50px;
         margin: 5px;
+        border-radius: 4px;
+        -webkit-user-select: none;
+        /* Safari */
+        -moz-user-select: none;
+        /* Firefox */
+        -ms-user-select: none;
+        /* IE/Edge */
+        user-select: none;
+        /* Non-prefixed version, currently supported by Chrome and Opera */
     }
+
+    .controlKey {
+        width: 50px;
+    }
+
+    .spaceKey {
+        width: 70%;
+    }
+
     .firstLine {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+        margin-top: 5px;
         width: 100%;
     }
+
     .seconendLine {
         display: flex;
-        justify-content: space-around;
+        justify-content: center;
+    }
+
+    .thirdLineKeys {
+        display: flex;
+        justify-content: center;
+    }
+
+    .fourthLineKeys {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 5px;
     }
 }

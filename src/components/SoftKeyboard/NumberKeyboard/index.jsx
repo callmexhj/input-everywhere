@@ -17,7 +17,9 @@ const NumberKeyboard = ({ onInput }) => {
             {renderNormalKeys()}
             <div className={styles.keyItem}></div>
             <div className={styles.keyItem} onClick={() => handleOnKeyDown(0)} >0</div>
-            <div className={styles.keyItem} onClick={() => handleOnKeyDown('backspace')} ><SwapLeftOutlined style={{ fontSize: '18px' }} /></div>
+            <div className={styles.keyItem} onClick={() => handleOnKeyDown('backspace')} >
+                <SwapLeftOutlined style={{ fontSize: '18px' }} />
+            </div>
         </div>
     )
 }

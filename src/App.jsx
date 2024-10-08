@@ -4,6 +4,7 @@ import SoftKeyboard from './components/SoftKeyboard'
 function InputEverywhere({ size, onFocus, onBlur, keyboardMode }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
   const [inputValue, setInputValue] = useState('')
+  const [isCapitalized, setIsCapitalized] = useState(false)
   const softKeyboardRef = useRef(null)
   const handleOnFocus = () => {
     setShowSoftKeyboard(true)
@@ -25,6 +26,8 @@ function InputEverywhere({ size, onFocus, onBlur, keyboardMode }) {
     mode: keyboardMode,
     softKeyboardRef,
     inputValue,
+    isCapitalized,
+    setIsCapitalized,
     setInputValue
   }
   return (
