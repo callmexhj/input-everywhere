@@ -1,12 +1,35 @@
+import { useEffect, useRef, useState } from 'react'
 import styles from './index.module.less'
 
-const InputContent = ({ size }) => {
-    const contentHeigh= size === 'small' ? 28 : size === 'big' ? 44 : 36
-    console.log(contentHeigh)
+const InputContent = ({ size, onFocus, onBlur, softKeyboardRef }) => {
+    const [isFocus, setFocus] = useState(false)
+    const inputRef = useRef(null)
+    const contentHeigh = size === 'small' ? 28 : size === 'big' ? 44 : 36
+    const handleFocus = () => {
+        setFocus(true)
+        onFocus()
+    }
+    useEffect(() => {
+        // 模拟Blur事件
+        const handleClickOutside = (event) => {
+            if (inputRef.current && (!inputRef.current.contains(event.target) && !softKeyboardRef.current.contains(event.target))) {
+                // 软键盘隐藏逻辑
+                setFocus(false)
+                onBlur()
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside)
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside)
+        }
+    }, [])
     return (
-        <div className={styles.InputContent} style={{ height: `${contentHeigh}px` }}>
-            111
-        </div>
+        <div
+            className={styles.InputContent}
+            style={{ height: `${contentHeigh}px` }}
+            onClick={handleFocus}
+            ref={inputRef}
+        ></div>
     )
 }
 

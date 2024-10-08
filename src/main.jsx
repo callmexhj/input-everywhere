@@ -3,8 +3,16 @@ import { createRoot } from 'react-dom/client'
 import InputEverywhere from './App.jsx'
 import './index.css'
 
+const onFocus = () => {
+  console.log('focus')
+}
+
+const onBlur = () => {
+  console.log('blur')
+}
+
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <InputEverywhere size={'big'} />
+    <InputEverywhere size={'big'} onFocus={onFocus} onBlur={onBlur} />
   </StrictMode>,
 )
