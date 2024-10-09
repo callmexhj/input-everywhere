@@ -90,8 +90,13 @@ const SoftKeyboard = ({
             </div>
         )
     }
+    // const handleTouchMove = (e) => {
+    //     e.preventDefault()
+    //     e.stopPropagation()
+    // }
+
     return show && (
-        <div className={styles.softKeyboard} ref={softKeyboardRef} >
+        <div className={styles.softKeyboard} ref={softKeyboardRef}>
             {renderToolbar()}
             {renderKeyboard(mode)}
         </div>
