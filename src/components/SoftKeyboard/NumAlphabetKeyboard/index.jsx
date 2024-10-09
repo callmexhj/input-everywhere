@@ -44,10 +44,14 @@ const NumAlphabetKeyboard = ({ onInput, mode, isCapitalized }) => {
         }
     }
     const renderSpaceKey = () => {
+        const [isInTouch, setIsInTouch] = useState(false)
         if (mode !== 'licensePlate') {
             return (
                 <div className={styles.fourthLineKeys}>
-                    <div className={`${styles.key} ${styles.spaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>
+                    <div
+                        className={`${styles.key} ${styles.spaceKey} ${isInTouch ? styles.spaceKeyInTouch : ''}`}
+                        onClick={() => handleOnKeyDown('\u0020')}
+                    >
                         空格
                     </div>
                 </div>
