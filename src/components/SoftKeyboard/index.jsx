@@ -96,7 +96,7 @@ const SoftKeyboard = ({
     // }
 
     return show && (
-        <div className={styles.softKeyboard} ref={softKeyboardRef}>
+        <div className={styles.softKeyboard} ref={softKeyboardRef} onClick={(e) => e.stopPropagation()}>
             {renderToolbar()}
             {renderKeyboard(mode)}
         </div>

@@ -33,7 +33,7 @@ const LicensePlate = ({ licenseType, inputRef, onFocus, inputValue, setInputValu
 
     const renderLicensePlateItem = () => {
         return licensePlateItemArray.map((item, index) => {
-            return <div className={styles.licensePlateItem} key={index}>{item}</div>
+            return <div className={`${styles.licensePlateItem} ${index === inputValue.length ? styles.actPlateItem : null}`} key={index}>{item}</div>
         })
     }
     const handleOnFocus = () => {

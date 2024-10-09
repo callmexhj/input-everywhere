@@ -55,7 +55,7 @@ const NumAlphabetKeyboard = ({ onInput, mode, isCapitalized }) => {
         }
     }
     return (
-        <div className={styles.numAlphabetKeyboard} onClick={(e) => e.stopPropagation()}>
+        <div className={styles.numAlphabetKeyboard}>
             <div className={styles.firstLine}>
                 {renderNormalKeys(normalKeys[0])}
             </div>
