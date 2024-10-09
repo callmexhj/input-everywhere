@@ -68,8 +68,8 @@ const NumAlphabetKeyboard = ({ onInput, mode, isCapitalized }) => {
             <div className={styles.thirdLineKeys}>
                 {renderToolbar()}
                 {renderNormalKeys(normalKeys[3])}
-                <div className={`${styles.key} ${styles.controlKey}`}>
-                    <SwapLeftOutlined style={{ fontSize: '18px' }} onClick={() => handleOnKeyDown('backspace')} />
+                <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('backspace')}>
+                    <SwapLeftOutlined style={{ fontSize: '18px' }} />
                 </div>
             </div>
             {renderSpaceKey()}

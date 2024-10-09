@@ -36,12 +36,12 @@ const AlphabetKeyboard = ({ isCapitalized, onInput }) => {
                 {renderNormalKeys(normalKeys[1])}
             </div>
             <div className={styles.thirdLineKeys}>
-                <div className={`${styles.key} ${styles.controlKey}`}>
-                    <CaretUpOutlined style={{ fontSize: '18px' }} onClick={() => handleOnKeyDown('capitalization')} />
+                <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('capitalization')}>
+                    <CaretUpOutlined style={{ fontSize: '18px' }} />
                 </div>
                 {renderNormalKeys(normalKeys[2])}
-                <div className={`${styles.key} ${styles.controlKey}`}>
-                    <SwapLeftOutlined style={{ fontSize: '18px' }} onClick={() => handleOnKeyDown('backspace')} />
+                <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('backspace')}>
+                    <SwapLeftOutlined style={{ fontSize: '18px' }} />
                 </div>
             </div>
             <div className={styles.fourthLineKeys}>
