@@ -69,12 +69,12 @@ const SoftKeyboard = ({
         }
         if (mode === 'numAlphabet') {
             return (
-                <NumAlphabetKeyboard onInput={onInput} />
+                <NumAlphabetKeyboard onInput={onInput} isCapitalized={isCapitalized} mode={mode} />
             )
         }
         if (mode === 'licensePlate' && inputValue.length >= 1) {
             return (
-                <NumAlphabetKeyboard onInput={onInput} />
+                <NumAlphabetKeyboard onInput={onInput} mode={mode} />
             )
         } else if (mode === 'licensePlate') {
             return (
