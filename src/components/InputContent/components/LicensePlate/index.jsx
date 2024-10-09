@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react'
 import styles from './index.module.less'
 
-const LicensePlate = ({ licenseType, inputRef, onFocus, inputValue }) => {
+const LicensePlate = ({ licenseType, inputRef, onFocus, inputValue, setInputValue }) => {
     const [licensePlateItemArray, setLicensePlateItemArray] = useState(['', '', '', '', '', '', ''])
     useEffect(() => {
         updateInputContent()
     }, [licenseType, inputValue])
 
     const updateInputContent = () => {
+        
         let tempArray = []
         let licensePlateDig = 7
         const licensePlateItemArrayCache = []

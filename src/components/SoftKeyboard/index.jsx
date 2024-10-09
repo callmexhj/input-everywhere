@@ -2,7 +2,9 @@ import styles from './index.module.less'
 import NumberKeyboard from './NumberKeyboard'
 import AlphabetKeyboard from './AlphabetKeyboard'
 import LicensePlateKeyBoard from './LicensePlateKeyBoard'
+import NumAlphabetKeyboard from './NumAlphabetKeyboard'
 import { FullscreenExitOutlined } from '@ant-design/icons'
+import { useEffect } from 'react'
 
 const SoftKeyboard = ({
     show,
@@ -13,8 +15,26 @@ const SoftKeyboard = ({
     isCapitalized,
     setIsCapitalized,
     showHide,
-    onHide
+    onHide,
+    licenseType
 }) => {
+
+    useEffect(() => {
+        let licensePlateDig = 7
+        if (licenseType === 'green') {
+            licensePlateDig = 8
+        }
+        if (inputValue.length > licensePlateDig) {
+            // 绿牌切换时，若位数超出，则删除最后一位
+            const inputTemp = inputValue.slice(0, licensePlateDig)
+            setInputValue(inputTemp)
+        }
+    }, [licenseType])
+
+    useEffect(() => {
+        // 修改键盘模式时初始化
+        setInputValue('')
+    }, [mode])
     const onInput = (e) => {
         if (e === 'backspace') {
             const newValue = inputValue.slice(0, inputValue.length - 1)
@@ -22,6 +42,16 @@ const SoftKeyboard = ({
         } else if (e === 'capitalization') {
             setIsCapitalized(!isCapitalized)
         } else {
+            if (mode === 'licensePlate') {
+                let licensePlateDig = 7
+                if (licenseType === 'green') {
+                    licensePlateDig = 8
+                }
+                if (inputValue.length >= licensePlateDig) {
+                    // 超出位数则舍弃
+                    return
+                }
+            }
             const newValue = `${inputValue}${e}`
             setInputValue(newValue)
         }
@@ -37,7 +67,16 @@ const SoftKeyboard = ({
                 <AlphabetKeyboard isCapitalized={isCapitalized} onInput={onInput} />
             )
         }
-        if (mode === 'licensePlate') {
+        if (mode === 'numAlphabet') {
+            return (
+                <NumAlphabetKeyboard onInput={onInput} />
+            )
+        }
+        if (mode === 'licensePlate' && inputValue.length >= 1) {
+            return (
+                <NumAlphabetKeyboard onInput={onInput} />
+            )
+        } else if (mode === 'licensePlate') {
             return (
                 <LicensePlateKeyBoard onInput={onInput} />
             )
@@ -50,7 +89,7 @@ const SoftKeyboard = ({
                 <FullscreenExitOutlined onClick={onHide} style={{ fontSize: '22px' }} />
             </div>
         )
-   }
+    }
     return show && (
         <div className={styles.softKeyboard} ref={softKeyboardRef} >
             {renderToolbar()}

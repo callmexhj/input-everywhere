@@ -14,6 +14,10 @@ const keyboardTypeOptions = [
     value: 'alphabet',
   },
   {
+    label: '数字字母',
+    value: 'numAlphabet',
+  },
+  {
     label: '车牌',
     value: 'licensePlate'
   }
@@ -42,6 +46,17 @@ const sizeOptions = [
   {
     label: '小',
     value: 'small',
+  }
+]
+
+const licenseTypeOptions = [
+  {
+    label: '绿牌',
+    value: 'green',
+  },
+  {
+    label: '默认',
+    value: 'default',
   }
 ]
 
@@ -80,13 +95,23 @@ const SizePicker = ({ size, setSize }) => {
   )
 }
 
+const LicenseTypePicker = ({ licenseType, setLicenseType }) => {
+  const onLicenseTypeChanged = ({ target: { value } }) => {
+    setLicenseType(value)
+  }
+  return (
+    <Radio.Group size="large" buttonStyle="solid" options={licenseTypeOptions} optionType="button" value={licenseType} onChange={onLicenseTypeChanged} />
+  )
+}
+
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
   const [isShowHide, setIsShowHide] = useState(false)
   const [size, setSize] = useState('big')
+  const [licenseType, setLicenseType] = useState('default')
   return (
     <>
-      <InputEverywhere size={size} keyboardMode={keyboardMode} showHide={isShowHide} onFocus={onFocus} onBlur={onBlur} />
+      <InputEverywhere size={size} keyboardMode={keyboardMode} showHide={isShowHide} onFocus={onFocus} onBlur={onBlur} licenseType={licenseType} />
       <div style={{ marginTop: 20 }}>
         <span>键盘类型：</span>
         <OptionPicker keyboardMode={keyboardMode} setKeyboardMode={setKeyboardMode} />
@@ -98,6 +123,10 @@ const TestDemoPage = () => {
       <div style={{ marginTop: 20 }}>
         <span>输入框Size：</span>
         <SizePicker size={size} setSize={setSize} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>车牌类型：</span>
+        <LicenseTypePicker licenseType={licenseType} setLicenseType={setLicenseType} />
       </div>
     </>
   )

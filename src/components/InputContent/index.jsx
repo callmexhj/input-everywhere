@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import LicensePlate from './components/LicensePlate'
 import styles from './index.module.less'
 
-const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue, mode }) => {
+const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue, mode, licenseType, setInputValue }) => {
     const [isFocus, setFocus] = useState(false)
     const inputRef = useRef(null)
     const contentHeigh = size === 'small' ? 28 : size === 'big' ? 44 : 36
@@ -27,8 +27,8 @@ const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue, mode
 
     const renderInputContent = () => {
         if (mode === 'licensePlate') {
-            return <LicensePlate inputRef={inputRef} inputValue={inputValue} licenseType={'green'} onFocus={handleFocus} />
-        } else if (mode === 'number' || mode === 'alphabet') {
+            return <LicensePlate inputRef={inputRef} inputValue={inputValue} setInputValue={setInputValue} licenseType={licenseType} onFocus={handleFocus} />
+        } else if (mode === 'number' || mode === 'alphabet' || mode === 'numAlphabet') {
             return (
                 <div
                     className={styles.InputContent}

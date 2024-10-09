@@ -47,7 +47,7 @@ const LicensePlateKeyBoard = ({ onInput }) => {
     const handleOnKeyDown = (key) => {
         onInput && onInput(key)
     }
-    const renderFirstLicensePlateKey = () => {
+    const renderLicensePlateKey = () => {
         return (
             <>
                 {
@@ -76,7 +76,7 @@ const LicensePlateKeyBoard = ({ onInput }) => {
     }
     return (
         <div className={styles.licensePlateKeyBoard}>
-            {renderFirstLicensePlateKey()}
+            {renderLicensePlateKey()}
         </div>
     )
 }

@@ -1,7 +1,7 @@
 import { memo, useState, useRef } from 'react'
 import InputContent from './components/InputContent'
 import SoftKeyboard from './components/SoftKeyboard'
-function InputEverywhere({ size, onFocus, onBlur, keyboardMode, showHide }) {
+function InputEverywhere({ size, onFocus, onBlur, keyboardMode, showHide, licenseType }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
   const [inputValue, setInputValue] = useState('')
   const [isCapitalized, setIsCapitalized] = useState(false)
@@ -26,6 +26,8 @@ function InputEverywhere({ size, onFocus, onBlur, keyboardMode, showHide }) {
     size,
     softKeyboardRef,
     inputValue,
+    licenseType,
+    setInputValue,
     onFocus: handleOnFocus,
     onBlur: handleOnBlur
   }
@@ -36,6 +38,7 @@ function InputEverywhere({ size, onFocus, onBlur, keyboardMode, showHide }) {
     inputValue,
     isCapitalized,
     showHide,
+    licenseType,
     onHide,
     setIsCapitalized,
     setInputValue
