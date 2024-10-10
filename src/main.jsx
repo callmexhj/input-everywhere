@@ -124,10 +124,12 @@ const TestDemoPage = () => {
         <span>输入框Size：</span>
         <SizePicker size={size} setSize={setSize} />
       </div>
-      <div style={{ marginTop: 20 }}>
-        <span>车牌类型：</span>
-        <LicenseTypePicker licenseType={licenseType} setLicenseType={setLicenseType} />
-      </div>
+      {
+        keyboardMode === 'licensePlate' && (<div style={{ marginTop: 20 }}>
+          <span>车牌类型：</span>
+          <LicenseTypePicker licenseType={licenseType} setLicenseType={setLicenseType} />
+        </div>)
+      }
     </>
   )
 }
