@@ -3,11 +3,28 @@ import react from '@vitejs/plugin-react'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
   css: {
     preprocessorOptions: {
       less: {
         
+      }
+    }
+  },
+  plugins: [react()],
+  build: {
+    lib: {
+      entry: 'src/index.jsx', // 指定组件的入口文件
+      name: 'InputEverywhere',
+      fileName: (format) => `input-everywhere.${format}.js`
+    },
+    cssCodeSplit: false,
+    rollupOptions: {
+      external: ['react', 'react-dom'],
+      output: {
+        globals: {
+          react: 'React',
+          'react-dom': 'ReactDOM'
+        }
       }
     }
   }

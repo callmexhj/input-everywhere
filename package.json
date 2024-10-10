@@ -1,8 +1,17 @@
 {
   "name": "input-everywhere",
   "private": false,
-  "version": "1.0.0",
+  "version": "1.0.7",
   "type": "module",
+  "main": "./dist/input-everywhere.umd.js",
+  "module": "./dist/input-everywhere.es.js",
+  "exports": {
+    ".": {
+      "import": "./dist/input-everywhere.es.js",
+      "require": "./dist/input-everywhere.umd.js"
+    },
+    "./style": "./dist/style.css"
+  },
   "files": [
     "dist"
   ],
