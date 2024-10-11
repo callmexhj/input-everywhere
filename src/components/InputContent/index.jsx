@@ -1,14 +1,25 @@
 import { useEffect, useRef, useState } from 'react'
 import LicensePlate from './components/LicensePlate'
+import VerificationCode from './components/VerificationCode'
 import styles from './index.module.less'
 
-const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue, mode, licenseType, setInputValue }) => {
+const InputContent = ({
+    size,
+    onFocus,
+    onBlur,
+    softKeyboardRef,
+    inputValue,
+    mode,
+    licenseType,
+    verificationCodeConfig,
+    setInputValue
+}) => {
     const [isFocus, setFocus] = useState(false)
     const inputRef = useRef(null)
     const contentHeigh = size === 'small' ? 28 : size === 'big' ? 44 : 36
     const handleFocus = () => {
         setFocus(true)
-        onFocus()
+        onFocus && onFocus()
     }
     useEffect(() => {
         // 模拟Blur事件
@@ -27,7 +38,12 @@ const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue, mode
 
     const renderInputContent = () => {
         if (mode === 'licensePlate') {
-            return <LicensePlate inputRef={inputRef} inputValue={inputValue} setInputValue={setInputValue} licenseType={licenseType} onFocus={handleFocus} />
+            return <LicensePlate
+                inputRef={inputRef}
+                inputValue={inputValue}
+                licenseType={licenseType}
+                onFocus={handleFocus} 
+            />
         } else if (mode === 'number' || mode === 'alphabet' || mode === 'numAlphabet') {
             return (
                 <div
@@ -39,6 +55,15 @@ const InputContent = ({ size, onFocus, onBlur, softKeyboardRef, inputValue, mode
                     {inputValue}
                 </div>
             )
+        } else if (mode === 'verificationCode') {
+            const { length } = verificationCodeConfig
+            return <VerificationCode
+                    length={length}
+                    inputRef={inputRef}
+                    inputValue={inputValue}
+                    setInputValue={setInputValue}
+                    onFocus={handleFocus}
+                />
         }
     }
 

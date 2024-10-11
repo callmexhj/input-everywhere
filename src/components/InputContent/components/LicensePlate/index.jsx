@@ -1,7 +1,12 @@
 import { useEffect, useState } from 'react'
 import styles from './index.module.less'
 
-const LicensePlate = ({ licenseType, inputRef, onFocus, inputValue, setInputValue }) => {
+const LicensePlate = ({ 
+    licenseType, 
+    inputRef, 
+    onFocus, 
+    inputValue
+}) => {
     const [licensePlateItemArray, setLicensePlateItemArray] = useState(['', '', '', '', '', '', ''])
     useEffect(() => {
         updateInputContent()
@@ -37,7 +42,7 @@ const LicensePlate = ({ licenseType, inputRef, onFocus, inputValue, setInputValu
         })
     }
     const handleOnFocus = () => {
-        onFocus()
+        onFocus && onFocus()
     }
     return (
         <div className={styles.licensePlate} ref={inputRef} onClick={handleOnFocus}>

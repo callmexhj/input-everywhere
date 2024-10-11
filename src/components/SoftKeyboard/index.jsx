@@ -16,6 +16,8 @@ const SoftKeyboard = ({
     setIsCapitalized,
     showHide,
     onHide,
+    verificationCodeConfig,
+    onSubmit,
     licenseType
 }) => {
 
@@ -52,11 +54,22 @@ const SoftKeyboard = ({
                     return
                 }
             }
+            if (mode === 'verificationCode') {
+                const { length, autocommit } = verificationCodeConfig
+                if (autocommit && inputValue.length === length - 1) {
+                    // 自动提交
+                    onSubmit && onSubmit(inputValue)
+                }
+                if (inputValue.length >= length) {
+                    // 超出位数则舍弃
+                    return
+                }
+            }
             const newValue = `${inputValue}${e}`
             setInputValue(newValue)
         }
     }
-    const renderKeyboard = (mode) => {
+    const renderKeyboard = (keyboardMode) => {
         if (mode === 'number') {
             return (
                 <NumberKeyboard onInput={onInput} />
@@ -80,6 +93,23 @@ const SoftKeyboard = ({
             return (
                 <LicensePlateKeyBoard onInput={onInput} />
             )
+        }
+        if (mode === 'verificationCode') {
+            const { onlyCapitalized } = verificationCodeConfig
+            if (verificationCodeConfig.mode.length === 1 && verificationCodeConfig.mode[0] === 'number') {
+                return (
+                    <NumberKeyboard onInput={onInput} />
+                )
+            } else if (verificationCodeConfig.mode.length === 1 && verificationCodeConfig.mode[0] === 'alphabet') {
+                return (
+                    <AlphabetKeyboard isCapitalized={onlyCapitalized ? true : isCapitalized} onInput={onInput} />
+                )
+            } else {
+                return (
+                    <NumAlphabetKeyboard onInput={onInput} mode={mode} isCapitalized={onlyCapitalized ? true : isCapitalized} />
+                )
+            }
+            
         }
     }
     const renderToolbar = () => {

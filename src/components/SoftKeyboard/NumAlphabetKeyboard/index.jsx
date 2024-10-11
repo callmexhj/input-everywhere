@@ -45,7 +45,7 @@ const NumAlphabetKeyboard = ({ onInput, mode, isCapitalized }) => {
     }
     const renderSpaceKey = () => {
         const [isInTouch, setIsInTouch] = useState(false)
-        if (mode !== 'licensePlate') {
+        if (mode !== 'licensePlate' && mode !== 'verificationCode') {
             return (
                 <div className={styles.fourthLineKeys}>
                     <div
