@@ -9,6 +9,7 @@ function InputEverywhere({
   showHide,
   licenseType,
   onSubmit,
+  cursorConfig,
   verificationCodeConfig
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
@@ -37,6 +38,7 @@ function InputEverywhere({
     inputValue,
     licenseType,
     verificationCodeConfig,
+    cursorConfig,
     setInputValue,
     onFocus: handleOnFocus,
     onBlur: handleOnBlur

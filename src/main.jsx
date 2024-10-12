@@ -189,6 +189,33 @@ const VerificationCodePicker = ({ verificationCodeConfig, setVerificationCodeCon
   )
 }
 
+const CursorConfig = ({ cursorConfig, setCursorConfig }) => {
+  const onCursorShowChanged = (show) => {
+    setCursorConfig({
+      ...cursorConfig,
+      show
+    })
+  }
+  const onBlinkChanged = (blink) => {
+    setCursorConfig({
+      ...cursorConfig,
+      blink
+    })
+  }
+  return (
+    <>
+      <div>
+        <span>是否显示文本输入框光标：</span>
+        <Switch checked={cursorConfig.show} onChange={onCursorShowChanged} />
+      </div>
+      <div>
+        <span>光标是否闪烁：</span>
+        <Switch checked={cursorConfig.blink} onChange={onBlinkChanged} />
+      </div>
+    </>
+  )
+}
+
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
   const [isShowHide, setIsShowHide] = useState(false)
@@ -199,6 +226,10 @@ const TestDemoPage = () => {
     mode: ['number', 'alphabet'],
     onlyCapitalized: true,
     autocommit: true
+  })
+  const [cursorConfig, setCursorConfig] = useState({
+    show: true,
+    blink: true
   })
   return (
     <>
@@ -211,6 +242,7 @@ const TestDemoPage = () => {
         onSubmit={onSubmit}
         licenseType={licenseType}
         verificationCodeConfig={verificationCodeConfig}
+        cursorConfig={cursorConfig}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
@@ -233,6 +265,10 @@ const TestDemoPage = () => {
       <div style={{ marginTop: 20 }}>
         <span>验证码配置：</span>
         <VerificationCodePicker verificationCodeConfig={verificationCodeConfig} setVerificationCodeConfig={setVerificationCodeConfig} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>光标配置：</span>
+        <CursorConfig cursorConfig={cursorConfig} setCursorConfig={setCursorConfig} />
       </div>
     </>
   )

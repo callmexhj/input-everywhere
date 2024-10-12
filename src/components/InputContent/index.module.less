@@ -9,4 +9,18 @@
     overflow-x: auto;
     font-size: 18px;
     white-space: pre;
+    .cursor {
+        width: 1px;
+        height: 70%;
+        background: #000;
+        margin: 0 2px;
+    }
+    .cursorBlink {
+        animation: blink 1.5s linear infinite;
+    }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
 }

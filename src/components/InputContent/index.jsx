@@ -12,7 +12,8 @@ const InputContent = ({
     mode,
     licenseType,
     verificationCodeConfig,
-    setInputValue
+    setInputValue,
+    cursorConfig
 }) => {
     const [isFocus, setFocus] = useState(false)
     const inputRef = useRef(null)
@@ -36,6 +37,12 @@ const InputContent = ({
         }
     }, [])
 
+    const cursorRender = () => {
+        console.log(cursorConfig)
+        const { show, blink } = cursorConfig
+        return show && <div className={`${styles.cursor} ${blink ? styles.cursorBlink : ''}`}></div>
+    }
+
     const renderInputContent = () => {
         if (mode === 'licensePlate') {
             return <LicensePlate
@@ -53,6 +60,8 @@ const InputContent = ({
                     ref={inputRef}
                 >
                     {inputValue}
+                    { cursorRender() }
+                    
                 </div>
             )
         } else if (mode === 'verificationCode') {
