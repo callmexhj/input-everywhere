@@ -58,7 +58,7 @@ const SoftKeyboard = ({
                 const { length, autocommit } = verificationCodeConfig
                 if (autocommit && inputValue.length === length - 1) {
                     // 自动提交
-                    onSubmit && onSubmit(inputValue)
+                    onSubmit && onSubmit(`${inputValue}${e}`)
                 }
                 if (inputValue.length >= length) {
                     // 超出位数则舍弃
