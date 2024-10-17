@@ -24,11 +24,10 @@ const TextInput = ({
           // console.log(inputValueArray, item, index)
           if (index === cursorPosition) {
             return (
-              <>
-              <div className={`${styles.cursor} ${blink ? styles.cursorBlink : ''}`}></div>
+              <div key={index} className={styles.cursorContainer}>
+                <div className={`${styles.cursor} ${blink ? styles.cursorBlink : ''}`}></div>
                 <span key={index}>{item}</span>
-                
-              </>
+              </div>
             )
           } else {
             return <span key={index}>{item}</span>

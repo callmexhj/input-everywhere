@@ -10,6 +10,8 @@ function InputEverywhere({
   licenseType,
   onSubmit,
   cursorConfig,
+  regular,
+  onRegular,
   verificationCodeConfig
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
@@ -26,10 +28,26 @@ function InputEverywhere({
   const handleOnBlur = () => {
     setShowSoftKeyboard(false)
     onBlur && onBlur()
+    if (regular?.length > 0) {
+      onRegular && onRegular(checkReg())
+    }
   }
 
   const onHide = () => {
     setShowSoftKeyboard(false)
+  }
+
+  const handleSubmit = (e) => {
+    onSubmit && onSubmit(e)
+  }
+
+  const checkReg = (e) => {
+    if (regular && regular.length > 0) {
+      const regexPattern = new RegExp(regular)
+      console.log(inputValue, regular)
+      const result = regexPattern.test(inputValue)
+      return result
+    }
   }
 
   const inputContentProps = {
@@ -61,7 +79,8 @@ function InputEverywhere({
     onHide,
     setIsCapitalized,
     setInputValue,
-    onSubmit
+    setShowSoftKeyboard,
+    onSubmit: handleSubmit
   }
   return (
     <>

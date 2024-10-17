@@ -29,7 +29,7 @@ const InputContent = ({
             if (inputRef.current && (!inputRef.current?.contains(event.target) && !softKeyboardRef.current?.contains(event.target))) {
                 // 软键盘隐藏逻辑
                 setFocus(false)
-                onBlur()
+                onBlur(inputValue)
             }
         }
         document.addEventListener('mousedown', handleClickOutside)

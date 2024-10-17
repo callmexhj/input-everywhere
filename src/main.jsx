@@ -1,7 +1,7 @@
 import { StrictMode, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import InputEverywhere from './App.jsx'
-import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch } from 'antd'
+import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Input } from 'antd'
 import './index.css'
 
 const keyboardTypeOptions = [
@@ -147,6 +147,13 @@ const VerificationCodePicker = ({ verificationCodeConfig, setVerificationCodeCon
       autocommit
     })
   }
+
+  const onAutocloseChanged = (autoclose) => {
+    setVerificationCodeConfig({
+      ...verificationCodeConfig,
+      autoclose
+    })
+  }
   return (
     <>
       <div>
@@ -185,8 +192,16 @@ const VerificationCodePicker = ({ verificationCodeConfig, setVerificationCodeCon
         <span>是否在长度达标后自动提交：</span>
         <Switch checked={verificationCodeConfig.autocommit} onChange={onAutocommitChanged} />
       </div>
+      <div>
+        <span>是否在自动提交后收起键盘：</span>
+        <Switch checked={verificationCodeConfig.autoclose} onChange={onAutocloseChanged} />
+      </div>
     </>
   )
+}
+
+const onRegular = (e) => {
+  console.log(e)
 }
 
 const CursorConfig = ({ cursorConfig, setCursorConfig }) => {
@@ -216,6 +231,12 @@ const CursorConfig = ({ cursorConfig, setCursorConfig }) => {
   )
 }
 
+const RegularVerification = ({ regular, setRegular }) => {
+  return (
+    <Input value={regular} onChange={(e) => setRegular(e.target.value)} />
+  )
+}
+
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
   const [isShowHide, setIsShowHide] = useState(false)
@@ -225,12 +246,14 @@ const TestDemoPage = () => {
     length: 6,
     mode: ['number', 'alphabet'],
     onlyCapitalized: true,
-    autocommit: true
+    autocommit: true,
+    autoclose: true
   })
   const [cursorConfig, setCursorConfig] = useState({
     show: true,
     blink: true
   })
+  const [regular, setRegular] = useState('/^.{0,4}$/')
   return (
     <>
       <InputEverywhere
@@ -243,6 +266,8 @@ const TestDemoPage = () => {
         licenseType={licenseType}
         verificationCodeConfig={verificationCodeConfig}
         cursorConfig={cursorConfig}
+        regular={regular}
+        onRegular={onRegular}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
@@ -269,6 +294,10 @@ const TestDemoPage = () => {
       <div style={{ marginTop: 20 }}>
         <span>光标配置：</span>
         <CursorConfig cursorConfig={cursorConfig} setCursorConfig={setCursorConfig} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>正则校验：</span>
+        <RegularVerification regular={regular} setRegular={setRegular} />
       </div>
     </>
   )

@@ -21,6 +21,7 @@ const SoftKeyboard = ({
     cursorPosition,
     cursorConfig,
     setCursorPosition,
+    setShowSoftKeyboard,
     licenseType
 }) => {
 
@@ -67,10 +68,11 @@ const SoftKeyboard = ({
                 }
             }
             if (mode === 'verificationCode') {
-                const { length, autocommit } = verificationCodeConfig
+                const { length, autocommit, autoclose } = verificationCodeConfig
                 if (autocommit && inputValue.length === length - 1) {
                     // 自动提交
                     onSubmit && onSubmit(`${inputValue}${e}`)
+                    autoclose && setShowSoftKeyboard(false)
                 }
                 if (inputValue.length >= length) {
                     // 超出位数则舍弃
