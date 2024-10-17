@@ -178,7 +178,7 @@ const VerificationCodePicker = ({ verificationCodeConfig, setVerificationCodeCon
         <Checkbox.Group options={modeOptions} onChange={onModeChanged} value={verificationCodeConfig.mode} />
       </div>
       <div>
-        <span>是否仅大写（仅当字母模式选中后生效）：</span>
+        <span>是否仅大写（仅当验证码选择字母键盘后生效）：</span>
         <Switch checked={verificationCodeConfig.onlyCapitalized} onChange={onOnlyCapitalizedChanged} />
       </div>
       <div>
