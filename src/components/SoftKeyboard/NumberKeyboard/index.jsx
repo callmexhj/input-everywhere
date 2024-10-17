@@ -4,11 +4,18 @@ import { SwapLeftOutlined } from '@ant-design/icons'
 const NumberKeyboard = ({ onInput }) => {
 
     const keyList = [9, 8, 7, 6, 5, 4, 3, 2, 1]
+    //键盘乱序
+    const randomKey = keyList.sort(function () {
+        return Math.random() - Math.random();
+    });
+
+console.log(randomKey,'ll')
+
     const handleOnKeyDown = (e) => {
         onInput && onInput(e)
     }
     const renderNormalKeys = () => {
-        return keyList.map(item => {
+        return randomKey.map(item => {
             return <div className={styles.keyItem} key={item} onClick={() => handleOnKeyDown(item)}>{item}</div>
         })
     }
