@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import LicensePlate from './components/LicensePlate'
 import VerificationCode from './components/VerificationCode'
-import styles from './index.module.less'
+import TextInput from './components/TextInput'
 
 const InputContent = ({
     size,
@@ -13,11 +13,12 @@ const InputContent = ({
     licenseType,
     verificationCodeConfig,
     setInputValue,
-    cursorConfig
+    cursorConfig,
+    cursorPosition,
+    setCursorPosition,
 }) => {
     const [isFocus, setFocus] = useState(false)
     const inputRef = useRef(null)
-    const contentHeigh = size === 'small' ? 28 : size === 'big' ? 44 : 36
     const handleFocus = () => {
         setFocus(true)
         onFocus && onFocus()
@@ -25,7 +26,7 @@ const InputContent = ({
     useEffect(() => {
         // 模拟Blur事件
         const handleClickOutside = (event) => {
-            if (isFocus && inputRef.current && (!inputRef.current?.contains(event.target) && !softKeyboardRef.current?.contains(event.target))) {
+            if (inputRef.current && (!inputRef.current?.contains(event.target) && !softKeyboardRef.current?.contains(event.target))) {
                 // 软键盘隐藏逻辑
                 setFocus(false)
                 onBlur()
@@ -37,12 +38,6 @@ const InputContent = ({
         }
     }, [])
 
-    const cursorRender = () => {
-        console.log(cursorConfig)
-        const { show, blink } = cursorConfig
-        return show && <div className={`${styles.cursor} ${blink ? styles.cursorBlink : ''}`}></div>
-    }
-
     const renderInputContent = () => {
         if (mode === 'licensePlate') {
             return <LicensePlate
@@ -53,16 +48,15 @@ const InputContent = ({
             />
         } else if (mode === 'number' || mode === 'alphabet' || mode === 'numAlphabet') {
             return (
-                <div
-                    className={styles.InputContent}
-                    style={{ height: `${contentHeigh}px` }}
-                    onClick={handleFocus}
-                    ref={inputRef}
-                >
-                    {inputValue}
-                    { cursorRender() }
-                    
-                </div>
+                <TextInput
+                    onFocus={handleFocus}
+                    inputRef={inputRef}
+                    size={size}
+                    inputValue={inputValue}
+                    cursorConfig={cursorConfig}
+                    cursorPosition={cursorPosition}
+                    setCursorPosition={setCursorPosition}
+                />
             )
         } else if (mode === 'verificationCode') {
             const { length } = verificationCodeConfig

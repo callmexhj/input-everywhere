@@ -16,6 +16,7 @@ function InputEverywhere({
   const [inputValue, setInputValue] = useState('')
   const [isCapitalized, setIsCapitalized] = useState(false)
   const softKeyboardRef = useRef(null)
+  const [cursorPosition, setCursorPosition] = useState(1)
 
   const handleOnFocus = () => {
     setShowSoftKeyboard(true)
@@ -39,6 +40,8 @@ function InputEverywhere({
     licenseType,
     verificationCodeConfig,
     cursorConfig,
+    cursorPosition,
+    setCursorPosition,
     setInputValue,
     onFocus: handleOnFocus,
     onBlur: handleOnBlur
@@ -52,6 +55,9 @@ function InputEverywhere({
     showHide,
     licenseType,
     verificationCodeConfig,
+    cursorConfig,
+    cursorPosition,
+    setCursorPosition,
     onHide,
     setIsCapitalized,
     setInputValue,

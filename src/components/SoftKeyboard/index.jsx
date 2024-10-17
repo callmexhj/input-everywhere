@@ -18,6 +18,9 @@ const SoftKeyboard = ({
     onHide,
     verificationCodeConfig,
     onSubmit,
+    cursorPosition,
+    cursorConfig,
+    setCursorPosition,
     licenseType
 }) => {
 
@@ -39,8 +42,17 @@ const SoftKeyboard = ({
     }, [mode])
     const onInput = (e) => {
         if (e === 'backspace') {
-            const newValue = inputValue.slice(0, inputValue.length - 1)
-            setInputValue(newValue)
+            
+            if (cursorConfig?.show) {
+                const oldValue = inputValue?.split('')
+                const newValue = [...oldValue.slice(0, cursorPosition - 1), ...oldValue.slice(cursorPosition)]
+                setCursorPosition(cursorPosition - 1 < 0 ? 0 : cursorPosition - 1)
+                setInputValue(newValue.join(''))
+            } else {
+                const newValue = inputValue.slice(0, inputValue.length - 1)
+                setInputValue(newValue)
+            }
+            
         } else if (e === 'capitalization') {
             setIsCapitalized(!isCapitalized)
         } else {
@@ -65,8 +77,24 @@ const SoftKeyboard = ({
                     return
                 }
             }
-            const newValue = `${inputValue}${e}`
-            setInputValue(newValue)
+            if (cursorConfig?.show) {
+                if (inputValue.length === 0) {
+                    const newValue = `${inputValue}${e}`
+                    setInputValue(newValue)
+                    setCursorPosition(cursorPosition + 1 > newValue.length - 1 ? newValue.length : cursorPosition + 1)
+                    return
+                } else {
+                    const oldValue = inputValue?.split('')
+                    const newValue = [...oldValue.slice(0, cursorPosition), e, ...oldValue.slice(cursorPosition)]
+                    setInputValue(newValue.join(''))
+                    setCursorPosition(cursorPosition + 1 > newValue.length - 1 ? newValue.length : cursorPosition + 1)
+                    return
+                }
+                
+            } else {
+                const newValue = `${inputValue}${e}`
+                setInputValue(newValue)
+            }
         }
     }
     const renderKeyboard = (keyboardMode) => {
@@ -109,7 +137,7 @@ const SoftKeyboard = ({
                     <NumAlphabetKeyboard onInput={onInput} mode={mode} isCapitalized={onlyCapitalized ? true : isCapitalized} />
                 )
             }
-            
+
         }
     }
     const renderToolbar = () => {
