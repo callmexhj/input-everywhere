@@ -20,8 +20,11 @@ const SoftKeyboard = ({
     onSubmit,
     cursorPosition,
     cursorConfig,
+    showButton,
+    buttonText,
     setCursorPosition,
     setShowSoftKeyboard,
+    setKeyboardModeInner,
     licenseType
 }) => {
 
@@ -38,8 +41,8 @@ const SoftKeyboard = ({
     }, [licenseType])
 
     useEffect(() => {
-        // 修改键盘模式时初始化
-        setInputValue('')
+        // 修改键盘模式(车牌+验证码)时初始化
+        if (['licensePlate', 'verificationCode'].indexOf(mode) !== -1) setInputValue('')
     }, [mode])
     const onInput = (e) => {
         if (e === 'backspace') {
@@ -56,6 +59,16 @@ const SoftKeyboard = ({
             
         } else if (e === 'capitalization') {
             setIsCapitalized(!isCapitalized)
+        } else if (e === 'submit') {
+            // 提交
+            onSubmit && onSubmit(`${inputValue}${e}`)
+        } else if (e === 'change-alphabet') {
+            // 提交
+            switch (e) {
+                case 'change-alphabet': {
+                    setKeyboardModeInner('number')
+                }
+            }
         } else {
             if (mode === 'licensePlate') {
                 let licensePlateDig = 7
@@ -99,7 +112,7 @@ const SoftKeyboard = ({
             }
         }
     }
-    const renderKeyboard = (keyboardMode) => {
+    const renderKeyboard = () => {
         if (mode === 'number') {
             return (
                 <NumberKeyboard onInput={onInput} />
@@ -107,7 +120,7 @@ const SoftKeyboard = ({
         }
         if (mode === 'alphabet') {
             return (
-                <AlphabetKeyboard isCapitalized={isCapitalized} onInput={onInput} />
+                <AlphabetKeyboard showButton={showButton} buttonText={buttonText} isCapitalized={isCapitalized} onInput={onInput} />
             )
         }
         if (mode === 'numAlphabet') {
@@ -158,7 +171,7 @@ const SoftKeyboard = ({
     return show && (
         <div className={styles.softKeyboard} ref={softKeyboardRef} onClick={(e) => e.stopPropagation()}>
             {renderToolbar()}
-            {renderKeyboard(mode)}
+            {renderKeyboard()}
         </div>
     )
 }

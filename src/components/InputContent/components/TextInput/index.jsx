@@ -48,7 +48,7 @@ const TextInput = ({
   const handleTouchMove = (e) => {
     if (!touchStartX) return
     const diffX = e.touches[0].clientX - touchStartX
-    if (Math.abs(diffX) > 120) {
+    if (Math.abs(diffX) > 100) {
       diffX > 0 ? handleCursorMove('right') : handleCursorMove('left')
       setTouchStartX(e.touches[0].clientX)
     }

@@ -2,7 +2,13 @@ import { useEffect, useState } from 'react'
 import styles from './index.module.less'
 import { SwapLeftOutlined, CaretUpOutlined } from '@ant-design/icons'
 
-const AlphabetKeyboard = ({ isCapitalized, onInput }) => {
+const AlphabetKeyboard = ({
+    isCapitalized,
+    onInput,
+    showButton,
+    buttonText,
+    theme
+}) => {
     const firstLineKeysCapitalized = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
     const seconendLineKeysCapitalized = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']
     const thirdLineKeysCapitalized = ['Z', 'X', 'C', 'V', 'B', 'N', 'M']
@@ -45,9 +51,19 @@ const AlphabetKeyboard = ({ isCapitalized, onInput }) => {
                 </div>
             </div>
             <div className={styles.fourthLineKeys}>
+                {
+                    showButton && (
+                        <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('change-alphabet')}>123</div>
+                    )
+                }
                 <div className={`${styles.key} ${styles.spaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>
                     空格
                 </div>
+                {
+                    showButton && (
+                        <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('submit')}>{buttonText}</div>
+                    )
+                }
             </div>
         </div>
     )

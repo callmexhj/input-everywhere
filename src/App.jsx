@@ -1,4 +1,4 @@
-import { memo, useState, useRef } from 'react'
+import { memo, useState, useRef, useEffect } from 'react'
 import InputContent from './components/InputContent'
 import SoftKeyboard from './components/SoftKeyboard'
 function InputEverywhere({
@@ -12,6 +12,9 @@ function InputEverywhere({
   cursorConfig,
   regular,
   onRegular,
+  showButton,
+  buttonText,
+  theme,
   verificationCodeConfig
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
@@ -19,6 +22,12 @@ function InputEverywhere({
   const [isCapitalized, setIsCapitalized] = useState(false)
   const softKeyboardRef = useRef(null)
   const [cursorPosition, setCursorPosition] = useState(1)
+  const [keyBoardModeInner, setKeyboardModeInner] = useState(keyboardMode)
+
+  useEffect(() => {
+    // 键盘切换初始化
+    setKeyboardModeInner(keyboardMode)
+  }, [keyboardMode])
 
   const handleOnFocus = () => {
     setShowSoftKeyboard(true)
@@ -51,7 +60,7 @@ function InputEverywhere({
   }
 
   const inputContentProps = {
-    mode: keyboardMode,
+    mode: keyBoardModeInner,
     size,
     softKeyboardRef,
     inputValue,
@@ -66,7 +75,7 @@ function InputEverywhere({
   }
   const softKeyboardProps = {
     show: showSoftKeyboard,
-    mode: keyboardMode,
+    mode: keyBoardModeInner,
     softKeyboardRef,
     inputValue,
     isCapitalized,
@@ -75,12 +84,16 @@ function InputEverywhere({
     verificationCodeConfig,
     cursorConfig,
     cursorPosition,
+    showButton,
+    buttonText,
+    theme,
     setCursorPosition,
     onHide,
     setIsCapitalized,
     setInputValue,
     setShowSoftKeyboard,
-    onSubmit: handleSubmit
+    onSubmit: handleSubmit,
+    setKeyboardModeInner
   }
   return (
     <>
