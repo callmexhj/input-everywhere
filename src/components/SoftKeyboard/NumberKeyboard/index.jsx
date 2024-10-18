@@ -1,24 +1,38 @@
+import { useEffect, useState } from 'react'
 import styles from './index.module.less'
 import { SwapLeftOutlined } from '@ant-design/icons'
 
 const NumberKeyboard = ({ onInput }) => {
+    // const keyList = [{
+    //     trueValue: 0,
+    //     randomValue: Math.random()
+    // }, 8, 7, 6, 5, 4, 3, 2, 1]
 
-    const keyList = [9, 8, 7, 6, 5, 4, 3, 2, 1]
-    //键盘乱序
-    const randomKey = keyList.sort(function () {
-        return Math.random() - Math.random();
-    });
-
-console.log(randomKey,'ll')
 
     const handleOnKeyDown = (e) => {
         onInput && onInput(e)
     }
+   
+    //键盘乱序
+    const randomKey =()=>{
+        const keyList = [9,8,7,6,5,4,3,2,1]
+        keyList.sort(function () {
+            return Math.random() - 0.5;
+        });
+        return keyList
+    } 
+    const [keys,setKeys] = useState([]);
+
+    useEffect(()=>{
+        setKeys(randomKey())
+    },[]) // 空依赖数组确保只在组件挂载时执行一次
+
     const renderNormalKeys = () => {
-        return randomKey.map(item => {
+        return keys.map(item => {
             return <div className={styles.keyItem} key={item} onClick={() => handleOnKeyDown(item)}>{item}</div>
         })
     }
+    
     return (
         <div className={styles.NumberKeyboard}>
             {renderNormalKeys()}

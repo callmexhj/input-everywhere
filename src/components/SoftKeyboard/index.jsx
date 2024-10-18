@@ -16,7 +16,7 @@ const SoftKeyboard = ({
     setIsCapitalized,
     showHide,
     onHide,
-    licenseType
+    licenseType,
 }) => {
 
     useEffect(() => {
@@ -59,7 +59,7 @@ const SoftKeyboard = ({
     const renderKeyboard = (mode) => {
         if (mode === 'number') {
             return (
-                <NumberKeyboard onInput={onInput} />
+                <NumberKeyboard onInput={onInput}  />
             )
         }
         if (mode === 'alphabet') {
