@@ -23,6 +23,7 @@ const SoftKeyboard = ({
     showButton,
     buttonText,
     theme,
+    lastModeMemory,
     setCursorPosition,
     setShowSoftKeyboard,
     setKeyboardModeInner,
@@ -46,6 +47,7 @@ const SoftKeyboard = ({
         if (['licensePlate', 'verificationCode'].indexOf(mode) !== -1) setInputValue('')
     }, [mode])
     const onInput = (e) => {
+        console.log(e)
         if (e === 'backspace') {
             
             if (cursorConfig?.show) {
@@ -63,11 +65,20 @@ const SoftKeyboard = ({
         } else if (e === 'submit') {
             // 提交
             onSubmit && onSubmit(`${inputValue}${e}`)
-        } else if (e === 'change-alphabet') {
+        } else if (e === 'change-number' || e === 'change-alphabet' || e === 'change-numAlphabet') {
             // 提交
             switch (e) {
-                case 'change-alphabet': {
+                case 'change-number': {
                     setKeyboardModeInner('number')
+                    break
+                }
+                case 'change-alphabet': {
+                    setKeyboardModeInner('alphabet')
+                    break
+                }
+                case 'change-numAlphabet': {
+                    setKeyboardModeInner('numAlphabet')
+                    break
                 }
             }
         } else {
@@ -116,7 +127,14 @@ const SoftKeyboard = ({
     const renderKeyboard = () => {
         if (mode === 'number') {
             return (
-                <NumberKeyboard onInput={onInput} />
+                <NumberKeyboard
+                    mode={mode}
+                    lastModeMemory={lastModeMemory}
+                    theme={theme}
+                    showButton={showButton}
+                    buttonText={buttonText}
+                    onInput={onInput}
+                />
             )
         }
         if (mode === 'alphabet') {
@@ -142,7 +160,13 @@ const SoftKeyboard = ({
             const { onlyCapitalized } = verificationCodeConfig
             if (verificationCodeConfig.mode.length === 1 && verificationCodeConfig.mode[0] === 'number') {
                 return (
-                    <NumberKeyboard onInput={onInput} />
+                    <NumberKeyboard
+                        onInput={onInput}
+                        mode={mode}
+                        theme={theme}
+                        showButton={showButton}
+                        buttonText={buttonText}
+                    />
                 )
             } else if (verificationCodeConfig.mode.length === 1 && verificationCodeConfig.mode[0] === 'alphabet') {
                 return (

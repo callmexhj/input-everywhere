@@ -23,11 +23,19 @@ function InputEverywhere({
   const softKeyboardRef = useRef(null)
   const [cursorPosition, setCursorPosition] = useState(1)
   const [keyBoardModeInner, setKeyboardModeInner] = useState(keyboardMode)
+  const [lastModeMemory, setLastModeMemory] = useState(null)
+  const prevKeyBoardModeInnerRef = useRef('alphabet')
 
   useEffect(() => {
     // 键盘切换初始化
     setKeyboardModeInner(keyboardMode)
+    prevKeyBoardModeInnerRef.current = keyboardMode
   }, [keyboardMode])
+
+  useEffect(() => {
+    setLastModeMemory(prevKeyBoardModeInnerRef.current)
+    prevKeyBoardModeInnerRef.current = keyBoardModeInner
+  }, [keyBoardModeInner])
 
   const handleOnFocus = () => {
     setShowSoftKeyboard(true)
@@ -87,6 +95,7 @@ function InputEverywhere({
     showButton,
     buttonText,
     theme,
+    lastModeMemory,
     setCursorPosition,
     onHide,
     setIsCapitalized,

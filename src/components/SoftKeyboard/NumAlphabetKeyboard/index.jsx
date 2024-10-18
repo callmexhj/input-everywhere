@@ -58,11 +58,11 @@ const NumAlphabetKeyboard = ({
                 <div className={styles.fourthLineKeys}>
                     {
                         showButton && (
-                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('change-alphabet')}>123</div>
+                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('change-number')}>123</div>
                         )
                     }
-                    <div className={`${styles.key} ${styles.spaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>
-                        空格
+                    <div className={`${styles.key} ${styles.spaceKey} ${showButton ? '' : styles.widerSpaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>
+                        space
                     </div>
                     {
                         showButton && (

@@ -6,6 +6,7 @@
     padding: 8px;
     width: 100%;
     box-sizing: border-box;
+
     .key {
         display: flex;
         justify-content: center;
@@ -25,6 +26,7 @@
         user-select: none;
         /* Non-prefixed version, currently supported by Chrome and Opera */
     }
+
     .toolKey {
         max-width: 82px;
         flex: 1;
@@ -47,12 +49,14 @@
         /* Non-prefixed version, currently supported by Chrome and Opera */
     }
 
-    .key:active, .toolKey:active {
+    .key:active,
+    .toolKey:active {
         background-color: #00000010;
     }
 
     .controlKey {
         width: 50px;
+
         .icoImg {
             height: 20px;
             width: 20px;
@@ -61,6 +65,10 @@
 
     .spaceKey {
         width: 50%;
+    }
+
+    .widerSpaceKey {
+        width: 75%;
     }
 
     .firstLine {
