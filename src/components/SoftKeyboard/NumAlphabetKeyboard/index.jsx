@@ -1,8 +1,16 @@
 import { useEffect, useState } from 'react'
 import styles from './index.module.less'
-import { SwapLeftOutlined, CaretUpOutlined } from '@ant-design/icons'
+import backspacePNG from '../../../assets/backspace.png'
+import capitalizationPNG from '../../../assets/capitalization.png'
 
-const NumAlphabetKeyboard = ({ onInput, mode, isCapitalized }) => {
+const NumAlphabetKeyboard = ({
+    onInput,
+    mode,
+    isCapitalized,
+    showButton,
+    buttonText,
+    theme
+}) => {
     const numberKey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
     const firstLineKeysCapitalized = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
     const seconendLineKeysCapitalized = ['A', 'S', 'D', 'F', 'G', 'H', 'J', 'K', 'L']
@@ -37,23 +45,30 @@ const NumAlphabetKeyboard = ({ onInput, mode, isCapitalized }) => {
             )
         } else {
             return (
-                <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('capitalization')}>
-                    <CaretUpOutlined style={{ fontSize: '18px' }} />
+                <div className={`${styles.key} ${styles.controlKey}`} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('capitalization')}>
+                    <img className={styles.icoImg} src={capitalizationPNG} />
                 </div>
             )
         }
     }
     const renderSpaceKey = () => {
-        const [isInTouch, setIsInTouch] = useState(false)
         if (mode !== 'licensePlate' && mode !== 'verificationCode') {
             return (
+
                 <div className={styles.fourthLineKeys}>
-                    <div
-                        className={`${styles.key} ${styles.spaceKey} ${isInTouch ? styles.spaceKeyInTouch : ''}`}
-                        onClick={() => handleOnKeyDown('\u0020')}
-                    >
+                    {
+                        showButton && (
+                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('change-alphabet')}>123</div>
+                        )
+                    }
+                    <div className={`${styles.key} ${styles.spaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>
                         空格
                     </div>
+                    {
+                        showButton && (
+                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('submit')}>{buttonText}</div>
+                        )
+                    }
                 </div>
             )
         }
@@ -72,8 +87,8 @@ const NumAlphabetKeyboard = ({ onInput, mode, isCapitalized }) => {
             <div className={styles.thirdLineKeys}>
                 {renderToolbar()}
                 {renderNormalKeys(normalKeys[3])}
-                <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('backspace')}>
-                    <SwapLeftOutlined style={{ fontSize: '18px' }} />
+                <div className={`${styles.key} ${styles.controlKey}`} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('backspace')}>
+                    <img className={styles.icoImg} src={backspacePNG} />
                 </div>
             </div>
             {renderSpaceKey()}

@@ -22,6 +22,7 @@ const SoftKeyboard = ({
     cursorConfig,
     showButton,
     buttonText,
+    theme,
     setCursorPosition,
     setShowSoftKeyboard,
     setKeyboardModeInner,
@@ -120,12 +121,12 @@ const SoftKeyboard = ({
         }
         if (mode === 'alphabet') {
             return (
-                <AlphabetKeyboard showButton={showButton} buttonText={buttonText} isCapitalized={isCapitalized} onInput={onInput} />
+                <AlphabetKeyboard theme={theme} showButton={showButton} buttonText={buttonText} isCapitalized={isCapitalized} onInput={onInput} />
             )
         }
         if (mode === 'numAlphabet') {
             return (
-                <NumAlphabetKeyboard onInput={onInput} isCapitalized={isCapitalized} mode={mode} />
+                <NumAlphabetKeyboard theme={theme} showButton={showButton} buttonText={buttonText} onInput={onInput} isCapitalized={isCapitalized} mode={mode} />
             )
         }
         if (mode === 'licensePlate' && inputValue.length >= 1) {

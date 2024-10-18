@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import styles from './index.module.less'
-import { SwapLeftOutlined, CaretUpOutlined } from '@ant-design/icons'
+import backspacePNG from '../../../assets/backspace.png'
+import capitalizationPNG from '../../../assets/capitalization.png'
 
 const AlphabetKeyboard = ({
     isCapitalized,
@@ -42,12 +43,12 @@ const AlphabetKeyboard = ({
                 {renderNormalKeys(normalKeys[1])}
             </div>
             <div className={styles.thirdLineKeys}>
-                <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('capitalization')}>
-                    <CaretUpOutlined style={{ fontSize: '18px' }} />
+                <div style={{ background: theme || '#1677FF' }} className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('capitalization')}>
+                    <img className={styles.icoImg} src={capitalizationPNG} />
                 </div>
                 {renderNormalKeys(normalKeys[2])}
-                <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('backspace')}>
-                    <SwapLeftOutlined style={{ fontSize: '18px' }} />
+                <div style={{ background: theme || '#1677FF' }} className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('backspace')}>
+                    <img className={styles.icoImg} src={backspacePNG} />
                 </div>
             </div>
             <div className={styles.fourthLineKeys}>

@@ -1,7 +1,7 @@
 import { StrictMode, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import InputEverywhere from './App.jsx'
-import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Input, ColorPicker } from 'antd'
+import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Input, ColorPicker, Select } from 'antd'
 import './index.css'
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
@@ -270,7 +270,35 @@ const TestDemoPage = () => {
   }
   const ThemePicker = ({ theme, setTheme }) => {
     return (
-      <ColorPicker value={theme} onChange={(e) => setTheme(e)} showText />
+      <Select 
+      style={{ width: 140 }}
+        options={[
+          { value: '#1677ff' },
+          { value: '#52c41a' },
+          { value: '#faad14' },
+          { value: '#fa8c16' },
+          { value: '#2f54eb' },
+          { value: '#722ed1' }
+        ]}
+        value={theme}
+        onChange={(e) => setTheme(e)}
+        labelRender={({value}) => {
+          return (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ width: 20, height: 20, background: value, marginRight: 10 }}></div>
+              { value }
+            </div>
+          )
+        }}
+        optionRender={(option) => {
+          return (
+            <div style={{ display: 'flex', alignItems: 'center' }}>
+              <div style={{ width: 20, height: 20, background: option.data.value, marginRight: 10 }}></div>
+              { option.data.value }
+            </div>
+          )
+        }}
+      />
     )
   }
   return (
