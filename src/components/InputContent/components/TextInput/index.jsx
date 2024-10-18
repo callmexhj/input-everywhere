@@ -34,6 +34,12 @@ const TextInput = ({
           }
         })
       )
+    } else {
+      return (
+        inputValueArray.map((item, index) => {
+          return <span key={index}>{item}</span>
+        })
+      )
     }
   }
   const handleOnFocus = () => {
