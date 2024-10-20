@@ -27,7 +27,8 @@ const SoftKeyboard = ({
     setCursorPosition,
     setShowSoftKeyboard,
     setKeyboardModeInner,
-    licenseType
+    licenseType,
+    disOrder
 }) => {
 
     useEffect(() => {
@@ -134,6 +135,7 @@ const SoftKeyboard = ({
                     showButton={showButton}
                     buttonText={buttonText}
                     onInput={onInput}
+                    disOrder= {disOrder}
                 />
             )
         }
