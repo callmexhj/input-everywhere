@@ -1,21 +1,50 @@
 import styles from './index.module.less'
+import {useState,useEffect} from 'react'
 import backspacePNG from '../../../assets/backspace-black.png'
 
 const NumberKeyboard = ({
     onInput,
     showButton,
+    disOrder,
     buttonText,
     lastModeMemory,
     mode,
     theme
 }) => {
 
-    const keyList = [[1, 4, 7], [2, 5, 8], [3, 6, 9]]
+   
     const handleOnKeyDown = (e) => {
         onInput && onInput(e)
     }
-    const renderNormalKeys = (list) => {
-        return list.map((item, index) => {
+    // const randomKey = ()=>{
+    //     const keyList = [1,2,3,4,5,6,7,8,9]
+    //    
+    //     if(disOrder){keyList.sort(function(){
+    //         return Math.random() - 0.5;
+    //     })}
+    //     return keyList
+    // }
+
+    const randomKey = () => {
+        const keyList = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+        if (disOrder) {
+            // 使用 Fisher-Yates 洗牌算法进行乱序
+            for (let i = keyList.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [keyList[i], keyList[j]] = [keyList[j], keyList[i]];
+            }
+        }
+        return keyList;
+    };
+    const [keys,setKeys] = useState([]);
+
+    useEffect(()=>{
+        setKeys(randomKey())
+    },[]);//空依赖数组保证只在组件挂载时执行一次
+    
+    const renderNormalKeys = () => {
+        return keys.map((item, index) => {
+            console.log(keys,'乱序')
             return (
                 <div className={styles.key} key={index} onClick={() => handleOnKeyDown(item)}>
                     {item}
@@ -27,9 +56,9 @@ const NumberKeyboard = ({
         <div className={styles.NumberKeyboard}>
             <div className={styles.leftWrap}>
                 <div className={styles.leftTopWrap}>
-                    <div className={styles.normalKeyCol}>{renderNormalKeys(keyList[0])}</div>
-                    <div className={styles.normalKeyCol}>{renderNormalKeys(keyList[1])}</div>
-                    <div className={styles.normalKeyCol}>{renderNormalKeys(keyList[2])}</div>
+                    <div className={styles.normalKeyCol}>{renderNormalKeys(keys[0])}</div>
+                    <div className={styles.normalKeyCol}>{renderNormalKeys(keys[1])}</div>
+                    <div className={styles.normalKeyCol}>{renderNormalKeys(keys[2])}</div>
                 </div>
                 <div className={styles.leftBottomWrap}>
                     {
