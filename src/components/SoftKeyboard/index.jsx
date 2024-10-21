@@ -4,8 +4,8 @@ import AlphabetKeyboard from './AlphabetKeyboard'
 import LicensePlateKeyBoard from './LicensePlateKeyBoard'
 import NumAlphabetKeyboard from './NumAlphabetKeyboard'
 import LicensePlateAlphabetNumKeyBoard from './LicensePlateAlphabetNumKeyBoard'
-import { FullscreenExitOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
+import SafeicoPNG from '../../assets/safeico.png'
 
 const SoftKeyboard = ({
     show,
@@ -29,6 +29,7 @@ const SoftKeyboard = ({
     setShowSoftKeyboard,
     setKeyboardModeInner,
     licenseType,
+    keyBoardTitle,
     disOrder
 }) => {
 
@@ -184,15 +185,14 @@ const SoftKeyboard = ({
     const renderToolbar = () => {
         return showHide && (
             <div className={styles.toolbar}>
-                <div></div>
-                <FullscreenExitOutlined onClick={onHide} style={{ fontSize: '22px' }} />
+                <div className={styles.keyboardTitle} >
+                    <img src={SafeicoPNG} />
+                    { keyBoardTitle }
+                </div>
+                <div className={styles.closeBar} style={{ color: theme || '#1677FF' }} onClick={() => onHide()}>完成</div>
             </div>
         )
     }
-    // const handleTouchMove = (e) => {
-    //     e.preventDefault()
-    //     e.stopPropagation()
-    // }
 
     return show && (
         <div className={styles.softKeyboard} ref={softKeyboardRef} onClick={(e) => e.stopPropagation()}>

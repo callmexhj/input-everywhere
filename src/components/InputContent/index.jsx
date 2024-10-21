@@ -38,7 +38,6 @@ const InputContent = ({
         }
     }
     useEffect(() => {
-        console.log(showSoftKeyboard, isFocus)
         if (!showSoftKeyboard && isFocus.current) {
             // 自动提交后，取消focus状态
             isFocus.current = false

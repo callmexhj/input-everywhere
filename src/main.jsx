@@ -329,6 +329,7 @@ const TestDemoPage = () => {
         buttonText={'确认'}
         theme={theme}
         disOrder={disOrder}
+        keyBoardTitle={'传化安全键盘'}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>

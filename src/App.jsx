@@ -13,11 +13,12 @@ function InputEverywhere({
   regular,
   onRegular,
   showButton,
-  buttonText,
+  buttonText = '确认',
   theme,
   verificationCodeConfig,
   className,
   style,
+  keyBoardTitle = '传化安全键盘',
   disOrder
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
@@ -100,6 +101,7 @@ function InputEverywhere({
     buttonText,
     theme,
     lastModeMemory,
+    keyBoardTitle,
     setCursorPosition,
     onHide,
     setIsCapitalized,
