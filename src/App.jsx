@@ -2,24 +2,33 @@ import { memo, useState, useRef, useEffect } from 'react'
 import InputContent from './components/InputContent'
 import SoftKeyboard from './components/SoftKeyboard'
 function InputEverywhere({
-  size,
-  onFocus,
-  onBlur,
-  keyboardMode,
-  showHide,
-  licenseType,
-  onSubmit,
-  cursorConfig,
-  regular,
-  onRegular,
-  showButton,
-  buttonText = '确认',
-  theme,
-  verificationCodeConfig,
-  className,
-  style,
+  size = 'big',
+  keyboardMode = 'number',
+  showHide = true,
   keyBoardTitle = '传化安全键盘',
-  disOrder
+  showButton = true,
+  buttonText = '确认',
+  theme = '#1677FF',
+  licenseType = 'default',
+  className = null,
+  style = null,
+  disOrder = false,
+  regular = null,
+  cursorConfig = {
+    show: true,
+    blink: true
+  },
+  verificationCodeConfig = {
+    mode: ['number', 'alphabet'],
+    length: 6,
+    onlyCapitalized: true,
+    autocommit: false,
+    autoclose: true
+  },
+  onFocus = () => {},
+  onBlur = () => {},
+  onSubmit = () => {},
+  onRegular = () => {}
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
   const [inputValue, setInputValue] = useState('')
