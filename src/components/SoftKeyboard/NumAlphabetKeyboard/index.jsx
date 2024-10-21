@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from './index.module.less'
 import backspacePNG from '../../../assets/backspace.png'
 import capitalizationPNG from '../../../assets/capitalization.png'
+import capitalizationSolidPNG from '../../../assets/capitalization-solid.png'
 
 const NumAlphabetKeyboard = ({
     onInput,
@@ -47,7 +48,11 @@ const NumAlphabetKeyboard = ({
         } else {
             return (
                 <div className={`${styles.key} ${styles.controlKey}`} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('capitalization')}>
-                    <img className={styles.icoImg} src={capitalizationPNG} />
+                    {
+                        isCapitalized
+                            ? <img className={styles.icoImg} src={capitalizationPNG} />
+                            : <img className={styles.icoImg} src={capitalizationSolidPNG} />
+                    }
                 </div>
             )
         }
