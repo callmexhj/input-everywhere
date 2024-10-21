@@ -65,18 +65,6 @@ const LicensePlateKeyBoard = ({ onInput, theme }) => {
                         }
                     })
                 }
-                {/* <div className={`${styles.licensePlateKey} ${styles.backspaceKey}`}>
-                    <SwapLeftOutlined style={{ fontSize: '18px' }} onClick={() => handleOnKeyDown('backspace')} />
-                </div>
-                {
-                    specialLicensePlateKey.map((item, index) => {
-                        return (
-                            <div key={index} onClick={() => handleOnKeyDown(item)} className={`${styles.licensePlateKey} ${styles.specialLicensePlateKey}`}>
-                                {item}
-                            </div>
-                        )
-                    })
-                } */}
             </div>
         )
     }
