@@ -16,6 +16,8 @@ function InputEverywhere({
   buttonText,
   theme,
   verificationCodeConfig,
+  className,
+  style,
   disOrder
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
@@ -107,10 +109,10 @@ function InputEverywhere({
     disOrder
   }
   return (
-    <>
+    <div className={className} style={{...style}}>
       <InputContent { ...inputContentProps } />
       <SoftKeyboard { ...softKeyboardProps } />
-    </>
+    </div>
   )
 }
 
