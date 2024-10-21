@@ -15,7 +15,8 @@ function InputEverywhere({
   showButton,
   buttonText,
   theme,
-  verificationCodeConfig
+  verificationCodeConfig,
+  disOrder
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -79,7 +80,7 @@ function InputEverywhere({
     setCursorPosition,
     setInputValue,
     onFocus: handleOnFocus,
-    onBlur: handleOnBlur
+    onBlur: handleOnBlur,
   }
   const softKeyboardProps = {
     show: showSoftKeyboard,
@@ -102,7 +103,8 @@ function InputEverywhere({
     setInputValue,
     setShowSoftKeyboard,
     onSubmit: handleSubmit,
-    setKeyboardModeInner
+    setKeyboardModeInner,
+    disOrder
   }
   return (
     <>

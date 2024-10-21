@@ -7,6 +7,7 @@ const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
   const [isShowHide, setIsShowHide] = useState(false)
   const [size, setSize] = useState('big')
+  const [disOrder,setDisOrder] = useState(true)
   const [licenseType, setLicenseType] = useState('default')
   const [verificationCodeConfig, setVerificationCodeConfig] = useState({
     length: 6,
@@ -141,6 +142,15 @@ const TestDemoPage = () => {
     }
     return (
       <Switch checked={showButton} onChange={onButtonChanged} />
+    )
+  }
+
+  const DisOrderSetting = ({disOrder,setDisOrder})=>{
+    const onDisOrderChanged = (e)=>{
+      setDisOrder(e)
+    }
+    return(
+      <Switch checked={disOrder} onChange={onDisOrderChanged}/>
     )
   }
 
@@ -318,10 +328,15 @@ const TestDemoPage = () => {
         onRegular={onRegular}
         buttonText={'确认'}
         theme={theme}
+        disOrder={disOrder}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
         <OptionPicker keyboardMode={keyboardMode} setKeyboardMode={setKeyboardMode} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>是否乱序（仅纯数字键盘）：</span>
+        <DisOrderSetting disOrder={disOrder} setDisOrder={setDisOrder} />
       </div>
       <div style={{ marginTop: 20 }}>
         <span>是否显示隐藏按钮：</span>
