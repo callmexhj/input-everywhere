@@ -7,6 +7,7 @@ const TextInput = ({
   inputValue,
   cursorConfig,
   cursorPosition,
+  isFocus,
   setCursorPosition
 }) => {
   const [touchStartX, setTouchStartX] = useState(null)
@@ -25,7 +26,7 @@ const TextInput = ({
           if (index === cursorPosition) {
             return (
               <div key={index} className={styles.cursorContainer}>
-                <div className={`${styles.cursor} ${blink ? styles.cursorBlink : ''}`}></div>
+                <div style={{ display: isFocus ? 'block' : 'none' }} className={`${styles.cursor} ${blink ? styles.cursorBlink : ''}`}></div>
                 <span key={index}>{item}</span>
               </div>
             )
@@ -43,7 +44,7 @@ const TextInput = ({
     }
   }
   const handleOnFocus = () => {
-    onFocus && onFocus()
+    onFocus()
   }
 
   const handleTouchStart = (e) => {

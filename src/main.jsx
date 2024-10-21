@@ -243,7 +243,7 @@ const TestDemoPage = () => {
   }
 
   const onRegular = (e) => {
-    console.log(e)
+    // console.log(e)
   }
 
   const CursorConfig = ({ cursorConfig, setCursorConfig }) => {

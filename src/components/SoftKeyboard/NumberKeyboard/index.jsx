@@ -16,7 +16,7 @@ const NumberKeyboard = ({
     const [keyList, setKeylist] = useState([[1, 4, 7], [2, 5, 8], [3, 6, 9]])
 
     useEffect(() => {
-        console.log(disOrder)
+        // console.log(disOrder)
         if (disOrder) {
             const randomArray = shuffleArray(prueNums)
             // console.log(randomArray)

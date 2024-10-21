@@ -17,21 +17,26 @@ const InputContent = ({
     cursorPosition,
     setCursorPosition,
 }) => {
-    const [isFocus, setFocus] = useState(false)
+    const isFocus = useRef(false)
+    const isFocusHookUsed = useRef(false)
     const inputRef = useRef(null)
     const handleFocus = () => {
-        setFocus(true)
-        onFocus && onFocus()
+        isFocus.current = true
+        if (!isFocusHookUsed.current) {
+            onFocus && onFocus()
+            isFocusHookUsed.current = true
+        }
+    }
+    // 模拟Blur事件
+    const handleClickOutside = (event) => {
+        if (isFocus.current && inputRef.current && (!inputRef.current?.contains(event.target) && !softKeyboardRef.current?.contains(event.target))) {
+            // 软键盘隐藏逻辑
+            isFocusHookUsed.current = false
+            isFocus.current = false
+            onBlur(inputValue)
+        }
     }
     useEffect(() => {
-        // 模拟Blur事件
-        const handleClickOutside = (event) => {
-            if (inputRef.current && (!inputRef.current?.contains(event.target) && !softKeyboardRef.current?.contains(event.target))) {
-                // 软键盘隐藏逻辑
-                setFocus(false)
-                onBlur(inputValue)
-            }
-        }
         document.addEventListener('mousedown', handleClickOutside)
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
@@ -56,6 +61,7 @@ const InputContent = ({
                     cursorConfig={cursorConfig}
                     cursorPosition={cursorPosition}
                     setCursorPosition={setCursorPosition}
+                    isFocus={isFocus.current}
                 />
             )
         } else if (mode === 'verificationCode') {
