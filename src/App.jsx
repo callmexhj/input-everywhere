@@ -29,6 +29,12 @@ function InputEverywhere({
   const [keyBoardModeInner, setKeyboardModeInner] = useState(keyboardMode)
   const [lastModeMemory, setLastModeMemory] = useState(null)
   const prevKeyBoardModeInnerRef = useRef('alphabet')
+  const checkTextValue = useRef('')
+  const checkRule = useRef(null)
+
+  useEffect(() => {
+    checkRule.current = regular
+  }, [regular])
 
   useEffect(() => {
     // 键盘切换初始化
@@ -46,11 +52,16 @@ function InputEverywhere({
     onFocus && onFocus()
   }
 
+  useEffect(() => {
+    checkTextValue.current = inputValue
+  }, [inputValue])
+
   const handleOnBlur = () => {
     setShowSoftKeyboard(false)
     onBlur && onBlur()
-    if (regular?.length > 0) {
-      onRegular && onRegular(checkReg())
+    console.log(regular)
+    if (checkRule.current?.test) {
+      onRegular && onRegular(checkReg(checkTextValue.current))
     }
   }
 
@@ -63,12 +74,9 @@ function InputEverywhere({
   }
 
   const checkReg = (e) => {
-    if (regular && regular.length > 0) {
-      const regexPattern = new RegExp(regular)
-      console.log(inputValue, regular)
-      const result = regexPattern.test(inputValue)
-      return result
-    }
+    const regexPattern = new RegExp(checkRule.current)
+    const result = regexPattern.test(e)
+    return result
   }
 
   const inputContentProps = {

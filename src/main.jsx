@@ -20,7 +20,8 @@ const TestDemoPage = () => {
     show: true,
     blink: true
   })
-  const [regular, setRegular] = useState('/^.{0,4}$/')
+  const [regular, setRegular] = useState(0)
+  const regularList = [/tf/, /^.{6,}$/, /^\d{6,}$/]
   const testRef = useRef(null)
   const [showButton, setShowButton] = useState(true)
   const [theme, setTheme] = useState('#1677FF')
@@ -82,6 +83,21 @@ const TestDemoPage = () => {
       label: '默认',
       value: 'default',
     }
+  ]
+
+  const regularOptions = [
+    {
+      label: '是否包含tf（/tf/）',
+      value: 0,
+    },
+    {
+      label: '长度是否大于5（/^.{6,}$/）',
+      value: 1,
+    },
+    {
+      label: '是否长度大于5且仅包含数字（/^\d{6,}$/）',
+      value: 2,
+    },
   ]
 
   const onFocus = () => {
@@ -243,7 +259,7 @@ const TestDemoPage = () => {
   }
 
   const onRegular = (e) => {
-    // console.log(e)
+    console.log(e)
   }
 
   const CursorConfig = ({ cursorConfig, setCursorConfig }) => {
@@ -275,7 +291,12 @@ const TestDemoPage = () => {
 
   const RegularVerification = ({ regular, setRegular }) => {
     return (
-      <Input value={regular} onChange={(e) => setRegular(e.target.value)} />
+      <Select 
+        style={{ width: 240 }}
+        options={[...regularOptions]}
+        value={regular}
+        onChange={(e) => setRegular(e)}
+      />
     )
   }
   const ThemePicker = ({ theme, setTheme }) => {
@@ -323,7 +344,7 @@ const TestDemoPage = () => {
         licenseType={licenseType}
         verificationCodeConfig={verificationCodeConfig}
         cursorConfig={cursorConfig}
-        regular={regular}
+        regular={regularList[regular]}
         showButton={showButton}
         onRegular={onRegular}
         buttonText={'确认'}
