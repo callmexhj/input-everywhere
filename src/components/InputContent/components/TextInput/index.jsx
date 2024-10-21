@@ -77,7 +77,6 @@ const TextInput = ({
   }, [swipeDirection])
 
   useEffect(() => {
-    console.log(inputValue)
     setInputValueArray([...inputValue.split(''), ''])
   }, [inputValue])
 

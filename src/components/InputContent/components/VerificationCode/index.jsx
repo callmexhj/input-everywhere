@@ -24,7 +24,7 @@ const VerificationCode = ({
             const tempArray = inputValue
                 .substring(0, dig) // 截取前length个字符
                 .split('') // 将字符串转为字符数组
-                .concat(new Array(dig - inputValue.length).fill('')); // 如果inputValue不足length，则补充空字符串
+                .concat(new Array((dig - inputValue.length) > 0 ? dig - inputValue.length : 0).fill('')); // 如果inputValue不足length，则补充空字符串
             setVerificationCodeArray([...tempArray]);
         }
     }, [inputValue])

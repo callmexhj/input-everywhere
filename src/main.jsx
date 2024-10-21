@@ -7,7 +7,7 @@ const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
   const [isShowHide, setIsShowHide] = useState(false)
   const [size, setSize] = useState('big')
-  const [disOrder,setDisOrder] = useState(true)
+  const [disOrder, setDisOrder] = useState(false)
   const [licenseType, setLicenseType] = useState('default')
   const [verificationCodeConfig, setVerificationCodeConfig] = useState({
     length: 6,

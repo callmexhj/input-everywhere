@@ -22,7 +22,7 @@ function InputEverywhere({
   const [inputValue, setInputValue] = useState('')
   const [isCapitalized, setIsCapitalized] = useState(false)
   const softKeyboardRef = useRef(null)
-  const [cursorPosition, setCursorPosition] = useState(1)
+  const [cursorPosition, setCursorPosition] = useState(0)
   const [keyBoardModeInner, setKeyboardModeInner] = useState(keyboardMode)
   const [lastModeMemory, setLastModeMemory] = useState(null)
   const prevKeyBoardModeInnerRef = useRef('alphabet')
