@@ -9,7 +9,8 @@ const VerificationCode = ({
     autocommit,
     inputValue,
     onFocus,
-    setInputValue
+    setInputValue,
+    isFocus
 }) => {
     const [verificationCodeArray, setVerificationCodeArray] = useState([])
 
@@ -37,13 +38,13 @@ const VerificationCode = ({
     }
 
     const handleOnFocus = () => {
-        onFocus && onFocus()
+        onFocus()
     }
     const renderVerificationCodeItem = () => {
         return verificationCodeArray.map((item, index) => {
             return (
                 <div
-                    className={`${styles.verificationCodeItem} ${index === inputValue?.length - 1 ? styles.actItem : ''}`}
+                    className={`${styles.verificationCodeItem} ${index === inputValue?.length ? ( isFocus ? styles.actItem : null ) : ''}`}
                     key={index}
                 >
                     {item}

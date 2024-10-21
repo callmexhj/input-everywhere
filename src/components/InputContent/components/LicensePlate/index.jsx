@@ -4,7 +4,8 @@ import styles from './index.module.less'
 const LicensePlate = ({ 
     licenseType, 
     inputRef, 
-    onFocus, 
+    onFocus,
+    isFocus,
     inputValue
 }) => {
     const [licensePlateItemArray, setLicensePlateItemArray] = useState(['', '', '', '', '', '', ''])
@@ -38,7 +39,7 @@ const LicensePlate = ({
 
     const renderLicensePlateItem = () => {
         return licensePlateItemArray.map((item, index) => {
-            return <div className={`${styles.licensePlateItem} ${index === inputValue.length ? styles.actPlateItem : null}`} key={index}>{item}</div>
+            return <div className={`${styles.licensePlateItem} ${index === inputValue.length ? ( isFocus ? styles.actPlateItem : null ) : null}`} key={index}>{item}</div>
         })
     }
     const handleOnFocus = () => {

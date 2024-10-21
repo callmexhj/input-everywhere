@@ -79,6 +79,7 @@ function InputEverywhere({
     verificationCodeConfig,
     cursorConfig,
     cursorPosition,
+    showSoftKeyboard,
     setCursorPosition,
     setInputValue,
     onFocus: handleOnFocus,

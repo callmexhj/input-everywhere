@@ -12,6 +12,7 @@ const InputContent = ({
     mode,
     licenseType,
     verificationCodeConfig,
+    showSoftKeyboard,
     setInputValue,
     cursorConfig,
     cursorPosition,
@@ -37,6 +38,14 @@ const InputContent = ({
         }
     }
     useEffect(() => {
+        console.log(showSoftKeyboard, isFocus)
+        if (!showSoftKeyboard && isFocus.current) {
+            // 自动提交后，取消focus状态
+            isFocus.current = false
+            isFocusHookUsed.current = false
+        }
+    }, [showSoftKeyboard, isFocus])
+    useEffect(() => {
         document.addEventListener('mousedown', handleClickOutside)
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
@@ -49,7 +58,8 @@ const InputContent = ({
                 inputRef={inputRef}
                 inputValue={inputValue}
                 licenseType={licenseType}
-                onFocus={handleFocus} 
+                onFocus={handleFocus}
+                isFocus={isFocus.current}
             />
         } else if (mode === 'number' || mode === 'alphabet' || mode === 'numAlphabet') {
             return (
@@ -72,6 +82,7 @@ const InputContent = ({
                     inputValue={inputValue}
                     setInputValue={setInputValue}
                     onFocus={handleFocus}
+                    isFocus={isFocus.current}
                 />
         }
     }
