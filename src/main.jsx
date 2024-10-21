@@ -5,7 +5,7 @@ import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Input, ColorPic
 import './index.css'
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
-  const [isShowHide, setIsShowHide] = useState(false)
+  const [isShowHide, setIsShowHide] = useState(true)
   const [size, setSize] = useState('big')
   const [disOrder, setDisOrder] = useState(false)
   const [licenseType, setLicenseType] = useState('default')

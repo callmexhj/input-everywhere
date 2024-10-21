@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import styles from './index.module.less'
 import backspacePNG from '../../../assets/backspace.png'
 import capitalizationPNG from '../../../assets/capitalization.png'
+import capitalizationSolidPNG from '../../../assets/capitalization-solid.png'
 
 const AlphabetKeyboard = ({
     isCapitalized,
@@ -44,7 +45,11 @@ const AlphabetKeyboard = ({
             </div>
             <div className={styles.thirdLineKeys}>
                 <div style={{ background: theme || '#1677FF' }} className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('capitalization')}>
-                    <img className={styles.icoImg} src={capitalizationPNG} />
+                    {
+                        isCapitalized
+                            ? <img className={styles.icoImg} src={capitalizationPNG} />
+                            : <img className={styles.icoImg} src={capitalizationSolidPNG} />
+                    }
                 </div>
                 {renderNormalKeys(normalKeys[2])}
                 <div style={{ background: theme || '#1677FF' }} className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('backspace')}>
