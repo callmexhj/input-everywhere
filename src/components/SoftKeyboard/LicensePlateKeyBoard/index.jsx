@@ -1,41 +1,39 @@
 import styles from './index.module.less'
-import { SwapLeftOutlined } from '@ant-design/icons'
-const LicensePlateKeyBoard = ({ onInput }) => {
+import backspacePNG from '../../../assets/backspace.png'
+const LicensePlateKeyBoard = ({ onInput, theme }) => {
     const firstLicensePlateKey = [
-        '京',   // 北京
-        '津',   // 天津
-        '沪',   // 上海
-        '渝',   // 重庆
-        '冀',   // 河北
-        '晋',   // 山西
-        '蒙',   // 内蒙古
-        '辽',   // 辽宁
-        '吉',   // 吉林
-        '黑',   // 黑龙江
-        '苏',   // 江苏
-        '浙',   // 浙江
-        '皖',   // 安徽
-        '闽',   // 福建
-        '赣',   // 江西
-        '鲁',   // 山东
-        '豫',   // 河南
-        '鄂',   // 湖北
-        '湘',   // 湖南
-        '粤',   // 广东
-        '桂',   // 广西
-        '琼',   // 海南
-        '川',   // 四川
-        '贵',   // 贵州
-        '云',   // 云南
-        '藏',   // 西藏
-        '陕',   // 陕西
-        '甘',   // 甘肃
-        '青',   // 青海
-        '宁',   // 宁夏
-        '新',   // 新疆
-        '港',   // 香港
-        '澳',   // 澳门
-        '台'   // 台湾
+        '京',
+        '津',
+        '渝',
+        '沪',
+        '冀',
+        '晋',
+        '辽',
+        '吉',
+        '黑',
+        '苏',
+        '浙',
+        '皖',
+        '闽',
+        '赣',
+        '鲁',
+        '豫',
+        '鄂',
+        '湘',
+        '粤',
+        '琼',
+        '川',
+        '贵',
+        '云',
+        '陕',
+        '甘',
+        '青',
+        '蒙',
+        '桂',
+        '宁',
+        '新',
+        '藏',
+        'backspace'
     ]
     const specialLicensePlateKey = [
         '使',
@@ -47,19 +45,27 @@ const LicensePlateKeyBoard = ({ onInput }) => {
     const handleOnKeyDown = (key) => {
         onInput && onInput(key)
     }
-    const renderLicensePlateKey = () => {
+    const renderLicensePlateKey = (keyList) => {
         return (
-            <>
+            <div className={styles.licensePlateKeyRow}>
                 {
-                    firstLicensePlateKey.map((item, index) => {
-                        return (
-                            <div key={index} className={styles.licensePlateKey} onClick={() => handleOnKeyDown(item)}>
-                                {item}
-                            </div>
-                        )
+                    keyList.map((item, index) => {
+                        if (item === 'backspace') {
+                            return (
+                                <div key={index} style={{ background: theme || '#1677FF' }} className={`${styles.licensePlateKey} ${styles.backspace}`} onClick={() => handleOnKeyDown(item)}>
+                                    <img className={styles.icoImg} src={backspacePNG} />
+                                </div>
+                            )
+                        } else {
+                            return (
+                                <div key={index} className={styles.licensePlateKey} onClick={() => handleOnKeyDown(item)}>
+                                    {item}
+                                </div>
+                            )
+                        }
                     })
                 }
-                <div className={`${styles.licensePlateKey} ${styles.backspaceKey}`}>
+                {/* <div className={`${styles.licensePlateKey} ${styles.backspaceKey}`}>
                     <SwapLeftOutlined style={{ fontSize: '18px' }} onClick={() => handleOnKeyDown('backspace')} />
                 </div>
                 {
@@ -70,13 +76,16 @@ const LicensePlateKeyBoard = ({ onInput }) => {
                             </div>
                         )
                     })
-                }
-            </>
+                } */}
+            </div>
         )
     }
     return (
         <div className={styles.licensePlateKeyBoard}>
-            {renderLicensePlateKey()}
+            {renderLicensePlateKey(firstLicensePlateKey.slice(0, 8))}
+            {renderLicensePlateKey(firstLicensePlateKey.slice(8, 16))}
+            {renderLicensePlateKey(firstLicensePlateKey.slice(16, 24))}
+            {renderLicensePlateKey(firstLicensePlateKey.slice(24, 32))}
         </div>
     )
 }

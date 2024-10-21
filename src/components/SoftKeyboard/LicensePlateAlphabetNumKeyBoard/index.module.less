@@ -1,36 +1,32 @@
-.licensePlateKeyBoard {
-    width: 100%;
+.licensePlateAlphabetNumKeyBoard {
     display: flex;
-    justify-content: center;
     flex-direction: column;
     gap: 8px;
     padding: 8px;
-    box-sizing: border-box;
     .licensePlateKeyRow {
         display: flex;
-        gap: 6px;
+        gap: 4.3px;
         .licensePlateKey {
-            height: 42px;
             flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            background-color: #fff;
-            border-radius: 4px;
-            box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.17);
+            height: 42px;
             font-weight: normal;
             line-height: 24px;
             text-align: center;
             letter-spacing: 0px;
             /* 中性色/11强调、正文标题 */
             color: #262B33;
+            background-color: #fff;
+            border-radius: 4px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .backspace {
+            flex: 2;
             .icoImg {
                 height: 20px;
                 width: 20px;
             }
         }
-        
     }
 }

@@ -3,6 +3,7 @@ import NumberKeyboard from './NumberKeyboard'
 import AlphabetKeyboard from './AlphabetKeyboard'
 import LicensePlateKeyBoard from './LicensePlateKeyBoard'
 import NumAlphabetKeyboard from './NumAlphabetKeyboard'
+import LicensePlateAlphabetNumKeyBoard from './LicensePlateAlphabetNumKeyBoard'
 import { FullscreenExitOutlined } from '@ant-design/icons'
 import { useEffect } from 'react'
 
@@ -38,8 +39,7 @@ const SoftKeyboard = ({
         }
         if (inputValue.length > licensePlateDig) {
             // 绿牌切换时，若位数超出，则删除最后一位
-            const inputTemp = inputValue.slice(0, licensePlateDig)
-            setInputValue(inputTemp)
+            onInput('backspace')
         }
     }, [licenseType])
 
@@ -48,7 +48,6 @@ const SoftKeyboard = ({
         if (['licensePlate', 'verificationCode'].indexOf(mode) !== -1) setInputValue('')
     }, [mode])
     const onInput = (e) => {
-        console.log(e)
         if (e === 'backspace') {
             
             if (cursorConfig?.show) {
@@ -151,11 +150,11 @@ const SoftKeyboard = ({
         }
         if (mode === 'licensePlate' && inputValue.length >= 1) {
             return (
-                <NumAlphabetKeyboard onInput={onInput} mode={mode} />
+                <LicensePlateAlphabetNumKeyBoard onInput={onInput} />
             )
         } else if (mode === 'licensePlate') {
             return (
-                <LicensePlateKeyBoard onInput={onInput} />
+                <LicensePlateKeyBoard onInput={onInput} theme={theme} />
             )
         }
         if (mode === 'verificationCode') {

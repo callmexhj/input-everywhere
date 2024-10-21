@@ -38,6 +38,7 @@ const NumAlphabetKeyboard = ({
     }
     const renderToolbar = () => {
         if (mode === 'licensePlate') {
+            // 废弃
             return (
                 <div className={`${styles.key} ${styles.controlKey}`} onClick={() => handleOnKeyDown('挂')}>
                     挂
