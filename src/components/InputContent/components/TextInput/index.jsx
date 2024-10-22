@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { CloseCircleOutlined } from '@ant-design/icons'
 import styles from './index.module.less'
 const TextInput = ({
   onFocus,
@@ -8,6 +9,8 @@ const TextInput = ({
   cursorConfig,
   cursorPosition,
   isFocus,
+  onClear,
+  showClear,
   setCursorPosition
 }) => {
   const [touchStartX, setTouchStartX] = useState(null)
@@ -91,9 +94,14 @@ const TextInput = ({
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
     >
-      {/* {inputValue} */}
-      {cursorRender()}
-
+      <div className={styles.inputValue}>
+        {cursorRender()}
+      </div>
+      {
+        showClear && (
+          <CloseCircleOutlined className={styles.closeIco} onClick={() => onClear()}/>
+        )
+      }
     </div>
   )
 }

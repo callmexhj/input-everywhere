@@ -9,6 +9,7 @@ const TestDemoPage = () => {
   const [size, setSize] = useState('big')
   const [disOrder, setDisOrder] = useState(false)
   const [licenseType, setLicenseType] = useState('default')
+  const [showClear, setShowClear] = useState(true)
   const [verificationCodeConfig, setVerificationCodeConfig] = useState({
     length: 6,
     mode: ['number', 'alphabet'],
@@ -352,6 +353,15 @@ const TestDemoPage = () => {
       <Radio.Group options={checkModeOptions} onChange={onModeChanged} value={checkModeTo} />
     )
   }
+  const ClearSetting = ({ showClear, setShowClear }) => {
+
+    const onClearChanged = (e) => {
+      setShowClear(e)
+    }
+    return (
+      <Switch checked={showClear} onChange={onClearChanged} />
+    )
+  }
   return (
     <div ref={testRef}>
       <InputEverywhere
@@ -372,6 +382,7 @@ const TestDemoPage = () => {
         disOrder={disOrder}
         keyBoardTitle={'传化安全键盘'}
         checkModeTo={checkModeTo}
+        showClear={showClear}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
@@ -386,6 +397,10 @@ const TestDemoPage = () => {
         <CheckModelTo checkModeTo={checkModeTo} setCheckModeTo={setCheckModeTo} />
       </div>
       <div style={{ marginTop: 20 }}>
+        <span>是否展示清除按钮：</span>
+        <ClearSetting showClear={showClear} setShowClear={setShowClear} />
+      </div>
+      <div style={{ marginTop: 20 }}>
         <span>是否显示隐藏按钮：</span>
         <HidePicker isShowHide={isShowHide} setIsShowHide={setIsShowHide} />
       </div>
@@ -394,7 +409,7 @@ const TestDemoPage = () => {
         <SizePicker size={size} setSize={setSize} />
       </div>
       <div style={{ marginTop: 20 }}>
-        <span>展示按钮：</span>
+        <span>展示提交按钮：</span>
         <ButtonSetting showButton={showButton} setShowButton={setShowButton} />
       </div>
       <div style={{ marginTop: 20 }}>

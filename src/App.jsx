@@ -6,6 +6,7 @@ function InputEverywhere({
   keyboardMode = 'number',
   showHide = true,
   keyBoardTitle = '传化安全键盘',
+  showClear = true,
   showButton = true,
   buttonText = '确认',
   theme = '#1677FF',
@@ -57,6 +58,11 @@ function InputEverywhere({
     prevKeyBoardModeInnerRef.current = keyBoardModeInner
   }, [keyBoardModeInner])
 
+  const onClear = () => {
+    setInputValue('')
+    setCursorPosition(0)
+  }
+
   const handleOnFocus = () => {
     setShowSoftKeyboard(true)
     onFocus && onFocus()
@@ -99,6 +105,8 @@ function InputEverywhere({
     cursorConfig,
     cursorPosition,
     showSoftKeyboard,
+    showClear,
+    onClear,
     setCursorPosition,
     setInputValue,
     onFocus: handleOnFocus,

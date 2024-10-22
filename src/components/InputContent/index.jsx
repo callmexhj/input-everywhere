@@ -17,6 +17,8 @@ const InputContent = ({
     cursorConfig,
     cursorPosition,
     setCursorPosition,
+    showClear,
+    onClear
 }) => {
     const isFocus = useRef(false)
     const isFocusHookUsed = useRef(false)
@@ -64,6 +66,7 @@ const InputContent = ({
             return (
                 <TextInput
                     onFocus={handleFocus}
+                    onClear={onClear}
                     inputRef={inputRef}
                     size={size}
                     inputValue={inputValue}
@@ -71,6 +74,7 @@ const InputContent = ({
                     cursorPosition={cursorPosition}
                     setCursorPosition={setCursorPosition}
                     isFocus={isFocus.current}
+                    showClear={showClear}
                 />
             )
         } else if (mode === 'verificationCode') {

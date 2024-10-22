@@ -9,23 +9,47 @@
     overflow-x: auto;
     font-size: 18px;
     white-space: pre;
+
+    .inputValue {
+        display: flex;
+        align-items: center;
+        overflow-x: auto;
+        font-size: 18px;
+        white-space: pre;
+        flex: 1;
+    }
+
     .cursorContainer {
         height: 100%;
         display: flex;
         align-items: center;
     }
+
     .cursor {
         width: 1px;
-        height: 70%;
+        height: 25px;
         background: #000;
         margin: 0 2px;
     }
+
     .cursorBlink {
         animation: blink 1.5s linear infinite;
+    }
+
+    .closeIco {
+        color: #bfbfbf;
+        margin-left: 10px;
     }
 }
 
 @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50% { opacity: 0; }
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0;
+    }
 }
