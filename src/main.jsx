@@ -4,7 +4,7 @@ import InputEverywhere from './App.jsx'
 import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Select } from 'antd'
 import './index.css'
 const TestDemoPage = () => {
-  const [keyboardMode, setKeyboardMode] = useState('verificationCode')
+  const [keyboardMode, setKeyboardMode] = useState('number')
   const [isShowHide, setIsShowHide] = useState(true)
   const [size, setSize] = useState('big')
   const [disOrder, setDisOrder] = useState(false)
@@ -407,6 +407,7 @@ const TestDemoPage = () => {
         checkModeTo={checkModeTo}
         showClear={showClear}
         regularPlace={regularPlaceArr}
+        // foucs={true}
         // defaultValue={'xxxxxxxxxx'}
       />
       <div style={{ marginTop: 20 }}>

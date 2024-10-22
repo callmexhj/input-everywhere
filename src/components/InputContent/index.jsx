@@ -18,6 +18,7 @@ const InputContent = ({
     cursorPosition,
     setCursorPosition,
     showClear,
+    foucs,
     onClear
 }) => {
     const isFocus = useRef(false)
@@ -47,6 +48,9 @@ const InputContent = ({
         }
     }, [showSoftKeyboard, isFocus])
     useEffect(() => {
+        if (foucs) {
+            handleFocus()
+        }
         document.addEventListener('mousedown', handleClickOutside)
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)

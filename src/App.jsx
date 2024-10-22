@@ -18,6 +18,7 @@ function InputEverywhere({
   disOrder = false,
   regular = null,
   regularPlace = [],
+  foucs = false,
   cursorConfig = {
     show: true,
     blink: true
@@ -140,6 +141,7 @@ function InputEverywhere({
     cursorPosition,
     showSoftKeyboard,
     showClear,
+    foucs,
     onClear,
     setCursorPosition,
     setInputValue,

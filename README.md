@@ -40,26 +40,27 @@ export default App
 
 |  属性   | 说明  |类型|默认值|
 |  ----  | ----  |---|---|
-| defaultValue  | 默认值 |string|-|
-| size  | 设置输入框大小 |big/default/small|'big'|
-| keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/symbolNum/licensePlate/verificationCode|number|
-|showHide   |设置是否展示键盘顶部的标题和缩小键盘按键|boolean|true|
-| keyBoardTitle  | 键盘顶部标题的文本（仅当showHide为true时生效） |string|传化安全键盘|
-| showClear  | 是否支持一键清除输入内容（仅当mode为number/alphabet/numAlphabet/symbolNum时生效） |booleam|true|
-| showButton  | 是否右下角的操作按钮（点击时触发onSubmit事件） |boolean|true|
 | buttonText  | 键盘右下角操作按钮的文本（仅当showButton为true时生效） |string|确认|
-| theme  | 键盘主题 |string|#1677FF|
-| licenseType  | 车牌类型(绿牌8位，常规车牌7位) |green/default|default|
 | checkModeTo  | mode为numAlphabet和alphabet时，指定左下角键盘切换按钮的切换目标类型 |number/symbolNum|symbolNum|
 |className,  |传入组件的样式类|string|-|
-|style|传入组件的样式|object|-|
+|cursorConfig|光标配置项|CursorConfig||
+| defaultValue  | 默认值 |string|-|
 |disOrder|是否乱序显示数字键盘（仅当mode为number时生效）|boolean|false|
+|focus|默认的聚焦状态|boolean|false|
+| keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/symbolNum/licensePlate/verificationCode|number|
+| keyBoardTitle  | 键盘顶部标题的文本（仅当showHide为true时生效） |string|传化安全键盘|
+| licenseType  | 车牌类型(绿牌8位，常规车牌7位) |green/default|default|
 |regular|传入一个正则表达式，在regularPlace指定的时机触发校验|object|null|
 |regularPlace|指定正则校验的时机|['blur', 'submit']/['blur']/['submit']|[]|
-|cursorConfig|光标配置项|CursorConfig||
+| size  | 设置输入框大小 |big/default/small|'big'|
+| showButton  | 是否右下角的操作按钮（点击时触发onSubmit事件） |boolean|true|
+| showClear  | 是否支持一键清除输入内容（仅当mode为number/alphabet/numAlphabet/symbolNum时生效） |booleam|true|
+|showHide   |设置是否展示键盘顶部的标题和缩小键盘按键|boolean|true|
+|style|传入组件的样式|object|-|
+| theme  | 键盘主题 |string|#1677FF|
 |verificationCodeConfig|验证码模式配置项（仅在mode为verificationCode时生效）|VerificationCodeConfig||
-| onFocus  | 输入框聚焦事件 |( ) => void|-|
 | onBlur  | 输入框失焦事件 |( ) => void|-|
+| onFocus  | 输入框聚焦事件 |( ) => void|-|
 | onSubmit  | 提交事件 |(value: string) => void|-|
 | onRegular  | 正则校验结果（需要首先传入正则表达式regular） |(boolean: boolean) => void|-|
 
