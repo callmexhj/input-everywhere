@@ -182,4 +182,4 @@ function InputEverywhere({
   )
 }
 
-export default memo(InputEverywhere)
+export default InputEverywhere

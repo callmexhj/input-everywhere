@@ -11,6 +11,7 @@ const AlphabetKeyboard = ({
     buttonText,
     checkModeTo,
     lastModeMemory,
+    mode,
     theme
 }) => {
     const firstLineKeysCapitalized = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
@@ -37,6 +38,28 @@ const AlphabetKeyboard = ({
             )
         })
     }
+    const renderSpaceKey = () => {
+        if (mode !== 'licensePlate' && mode !== 'verificationCode') {
+            return (
+
+                <div className={styles.fourthLineKeys}>
+                    {
+                        showButton && (
+                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown(`change-${checkModeTo === 'number' && lastModeMemory !== 'symbolNum' ? 'number' : 'symbolNum'}`)}>123</div>
+                        )
+                    }
+                    <div className={`${styles.key} ${styles.spaceKey} ${showButton ? '' : styles.widerSpaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>
+                        space
+                    </div>
+                    {
+                        showButton && (
+                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('submit')}>{buttonText}</div>
+                        )
+                    }
+                </div>
+            )
+        }
+    }
     return (
         <div className={styles.AlphabetKeyboard}>
             <div className={styles.firstLine}>
@@ -58,21 +81,7 @@ const AlphabetKeyboard = ({
                     <img className={styles.icoImg} src={backspacePNG} />
                 </div>
             </div>
-            <div className={styles.fourthLineKeys}>
-                {
-                    showButton && (
-                        <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown(`change-${checkModeTo === 'number' && lastModeMemory !== 'symbolNum' ? 'number' : 'symbolNum'}`)}>123</div>
-                    )
-                }
-                <div className={`${styles.key} ${styles.spaceKey} ${showButton ? '' : styles.widerSpaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>
-                    space
-                </div>
-                {
-                    showButton && (
-                        <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('submit')}>{buttonText}</div>
-                    )
-                }
-            </div>
+            {renderSpaceKey()}
         </div>
     )
 }

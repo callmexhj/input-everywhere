@@ -154,6 +154,7 @@ const SoftKeyboard = ({
                     buttonText={buttonText}
                     isCapitalized={isCapitalized}
                     lastModeMemory={lastModeMemory}
+                    mode={mode}
                     onInput={onInput}
                 />
             )
@@ -215,6 +216,7 @@ const SoftKeyboard = ({
                     <AlphabetKeyboard
                         isCapitalized={onlyCapitalized ? true : isCapitalized}
                         onInput={onInput}
+                        mode={mode}
                     />
                 )
             } else {
