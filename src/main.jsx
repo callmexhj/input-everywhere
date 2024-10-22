@@ -10,6 +10,7 @@ const TestDemoPage = () => {
   const [disOrder, setDisOrder] = useState(false)
   const [licenseType, setLicenseType] = useState('default')
   const [showClear, setShowClear] = useState(true)
+  const [disabled, setDisabled] = useState(false)
   const [verificationCodeConfig, setVerificationCodeConfig] = useState({
     length: 6,
     mode: ['number', 'alphabet'],
@@ -32,6 +33,10 @@ const TestDemoPage = () => {
     {
       label: '纯数字',
       value: 'number',
+    },
+    {
+      label: '金额(数字加小数点)',
+      value: 'money'
     },
     {
       label: '纯字母',
@@ -385,6 +390,11 @@ const TestDemoPage = () => {
       <Checkbox.Group options={regularPlaceOption} onChange={onPlaceChanged} value={regularPlaceArr} />
     )
   }
+  const DisableSetting = ({ disabled, setDisabled }) => {
+    return (
+      <Switch checked={disabled} onChange={setDisabled} />
+    )
+  }
   return (
     <div ref={testRef}>
       <InputEverywhere
@@ -407,6 +417,7 @@ const TestDemoPage = () => {
         checkModeTo={checkModeTo}
         showClear={showClear}
         regularPlace={regularPlaceArr}
+        disabled={disabled}
         // foucs={true}
         // defaultValue={'xxxxxxxxxx'}
       />
@@ -429,6 +440,10 @@ const TestDemoPage = () => {
       <div style={{ marginTop: 20 }}>
         <span>正则校验时机：</span>
         <RegularPlace regularPlaceArr={regularPlaceArr} setRegularPlaceArr={setRegularPlaceArr} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>是否禁用键盘：</span>
+        <DisableSetting disabled={disabled} setDisabled={setDisabled} />
       </div>
       {
         keyboardMode === 'number' && (

@@ -44,7 +44,8 @@ export default App
 | checkModeTo  | mode为numAlphabet和alphabet时，指定左下角键盘切换按钮的切换目标类型 |number/symbolNum|symbolNum|
 |className,  |传入组件的样式类|string|-|
 |cursorConfig|光标配置项|CursorConfig||
-| defaultValue  | 默认值 |string|-|
+| defaultValue  | 输入默认值 |string|-|
+| disabled  | 是否禁用键盘 |boolean|false|
 |disOrder|是否乱序显示数字键盘（仅当mode为number时生效）|boolean|false|
 |focus|默认的聚焦状态|boolean|false|
 | keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/symbolNum/licensePlate/verificationCode|number|

@@ -11,6 +11,7 @@ const TextInput = ({
   isFocus,
   onClear,
   showClear,
+  disabled,
   setCursorPosition
 }) => {
   const [touchStartX, setTouchStartX] = useState(null)
@@ -97,7 +98,7 @@ const TextInput = ({
       </div>
       {
         showClear && (
-          <CloseCircleOutlined className={styles.closeIco} onClick={() => onClear()}/>
+          <CloseCircleOutlined className={styles.closeIco} onClick={() => !disabled && onClear()}/>
         )
       }
     </div>

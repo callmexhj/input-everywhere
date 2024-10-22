@@ -19,12 +19,14 @@ const InputContent = ({
     setCursorPosition,
     showClear,
     foucs,
+    disabled,
     onClear
 }) => {
     const isFocus = useRef(false)
     const isFocusHookUsed = useRef(false)
     const inputRef = useRef(null)
     const handleFocus = () => {
+        if (disabled) return
         isFocus.current = true
         if (!isFocusHookUsed.current) {
             onFocus && onFocus()
@@ -66,11 +68,12 @@ const InputContent = ({
                 onFocus={handleFocus}
                 isFocus={isFocus.current}
             />
-        } else if (mode === 'number' || mode === 'alphabet' || mode === 'numAlphabet' || mode === 'symbolNum') {
+        } else if (mode === 'number' || mode === 'money' || mode === 'alphabet' || mode === 'numAlphabet' || mode === 'symbolNum') {
             return (
                 <TextInput
                     onFocus={handleFocus}
                     onClear={onClear}
+                    disabled={disabled}
                     inputRef={inputRef}
                     size={size}
                     inputValue={inputValue}

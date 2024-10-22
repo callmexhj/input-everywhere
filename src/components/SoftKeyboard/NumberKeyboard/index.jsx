@@ -53,6 +53,29 @@ const NumberKeyboard = ({
             )
         })
     }
+    const leftBottomKeyRender = () => {
+        switch (mode) {
+            case 'verificationCode': {
+                return (
+                    <div className={`${styles.key} ${styles.grayKey}`}></div>
+                )
+            }
+            case 'money': {
+                return (
+                    <div className={`${styles.key} ${styles.grayKey}`} onClick={() => handleOnKeyDown('.')}>.</div>
+                )
+            }
+            default:
+                return (
+                    <div
+                        className={`${styles.key} ${styles.grayKey}`}
+                        onClick={() => handleOnKeyDown(`change-${lastModeMemory === 'number' ? 'alphabet' : lastModeMemory}`)}
+                    >
+                        abc
+                    </div>
+                )
+        }
+    }
     return (
         <div className={styles.NumberKeyboard}>
             <div className={styles.leftWrap}>
@@ -63,19 +86,10 @@ const NumberKeyboard = ({
                 </div>
                 <div className={styles.leftBottomWrap}>
                     {
-                        mode === 'verificationCode' ? (
-                            <div className={`${styles.key} ${styles.grayKey}`}></div>
-                        ) : (
-                            <div
-                                className={`${styles.key} ${styles.grayKey}`}
-                                onClick={() => handleOnKeyDown(`change-${lastModeMemory === 'number' ?  'alphabet' : lastModeMemory}`)}
-                            >
-                                abc
-                            </div>
-                        )
+                        leftBottomKeyRender()
                     }
                     <div className={styles.key} onClick={() => handleOnKeyDown(0)}>0</div>
-                    <div className={`${styles.key} ${styles.grayKey}`} onClick={() =>!showButton && handleOnKeyDown('backspace')}>
+                    <div className={`${styles.key} ${styles.grayKey}`} onClick={() => !showButton && handleOnKeyDown('backspace')}>
                         {
                             !showButton && (
                                 <img className={styles.icoImg} src={backspacePNG} />

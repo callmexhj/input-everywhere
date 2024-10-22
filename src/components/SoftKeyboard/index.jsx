@@ -132,7 +132,7 @@ const SoftKeyboard = ({
         }
     }
     const renderKeyboard = () => {
-        if (mode === 'number') {
+        if (mode === 'number' || mode === 'money') {
             return (
                 <NumberKeyboard
                     mode={mode}
