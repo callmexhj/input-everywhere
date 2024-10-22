@@ -41,9 +41,10 @@ export default App
 |  属性   | 说明  |类型|默认值|
 |  ----  | ----  |---|---|
 | size  | 设置输入框大小 |big/default/small|'big'|
-| keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/licensePlate/verificationCode/symbolNum|number|
+| keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/symbolNum/licensePlate/verificationCode|number|
 |showHide   |设置是否展示键盘顶部的标题和缩小键盘按键|boolean|true|
 | keyBoardTitle  | 键盘顶部标题的文本（仅当showHide为true时生效） |string|传化安全键盘|
+| showClear  | 是否支持一键清除输入内容（仅当mode为number/alphabet/numAlphabet/symbolNum时生效） |booleam|true|
 | showButton  | 是否右下角的操作按钮（点击时触发onSubmit事件） |boolean|true|
 | buttonText  | 键盘右下角操作按钮的文本（仅当showButton为true时生效） |string|确认|
 | theme  | 键盘主题 |string|#1677FF|
