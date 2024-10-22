@@ -67,7 +67,7 @@ const SoftKeyboard = ({
             setIsCapitalized(!isCapitalized)
         } else if (e === 'submit') {
             // 提交
-            onSubmit && onSubmit(`${inputValue}${e}`)
+            onSubmit && onSubmit(`${inputValue}`)
         } else if (e === 'change-number' || e === 'change-alphabet' || e === 'change-numAlphabet' || e === 'change-symbolNum') {
             // 提交
             switch (e) {
