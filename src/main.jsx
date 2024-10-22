@@ -1,7 +1,7 @@
 import { StrictMode, useRef, useState } from 'react'
 import { createRoot } from 'react-dom/client'
 import InputEverywhere from './App.jsx'
-import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Input, ColorPicker, Select } from 'antd'
+import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Select } from 'antd'
 import './index.css'
 const TestDemoPage = () => {
   const [keyboardMode, setKeyboardMode] = useState('number')
@@ -27,6 +27,7 @@ const TestDemoPage = () => {
   const [showButton, setShowButton] = useState(true)
   const [theme, setTheme] = useState('#1677FF')
   const [checkModeTo, setCheckModeTo] = useState('symbolNum')
+  const [regularPlaceArr, setRegularPlaceArr] = useState(['blur', 'submit'])
   const keyboardTypeOptions = [
     {
       label: '纯数字',
@@ -118,6 +119,14 @@ const TestDemoPage = () => {
     console.log('submit', value)
   }
 
+  const onRegular = (e) => {
+    if (e) {
+      console.log('校验成功')
+    } else {
+      console.log('校验失败')
+    }
+  }
+
   const OptionPicker = ({ keyboardMode, setKeyboardMode }) => {
     const onKeyboardModeChanged = ({ target: { value } }) => {
       setKeyboardMode(value)
@@ -150,7 +159,7 @@ const TestDemoPage = () => {
       setLicenseType(value)
     }
     return (
-      <Radio.Group size="large" buttonStyle="solid" options={licenseTypeOptions} optionType="button" value={licenseType} onChange={onLicenseTypeChanged} />
+      <Radio.Group buttonStyle="solid" options={licenseTypeOptions} optionType="button" value={licenseType} onChange={onLicenseTypeChanged} />
     )
   }
 
@@ -164,12 +173,12 @@ const TestDemoPage = () => {
     )
   }
 
-  const DisOrderSetting = ({disOrder,setDisOrder})=>{
-    const onDisOrderChanged = (e)=>{
+  const DisOrderSetting = ({ disOrder, setDisOrder }) => {
+    const onDisOrderChanged = (e) => {
       setDisOrder(e)
     }
-    return(
-      <Switch checked={disOrder} onChange={onDisOrderChanged}/>
+    return (
+      <Switch checked={disOrder} onChange={onDisOrderChanged} />
     )
   }
 
@@ -261,10 +270,6 @@ const TestDemoPage = () => {
     )
   }
 
-  const onRegular = (e) => {
-    console.log(e)
-  }
-
   const CursorConfig = ({ cursorConfig, setCursorConfig }) => {
     const onCursorShowChanged = (show) => {
       setCursorConfig({
@@ -294,7 +299,7 @@ const TestDemoPage = () => {
 
   const RegularVerification = ({ regular, setRegular }) => {
     return (
-      <Select 
+      <Select
         style={{ width: 240 }}
         options={[...regularOptions]}
         value={regular}
@@ -304,8 +309,8 @@ const TestDemoPage = () => {
   }
   const ThemePicker = ({ theme, setTheme }) => {
     return (
-      <Select 
-      style={{ width: 140 }}
+      <Select
+        style={{ width: 140 }}
         options={[
           { value: '#1677ff' },
           { value: '#52c41a' },
@@ -316,11 +321,11 @@ const TestDemoPage = () => {
         ]}
         value={theme}
         onChange={(e) => setTheme(e)}
-        labelRender={({value}) => {
+        labelRender={({ value }) => {
           return (
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ width: 20, height: 20, background: value, marginRight: 10 }}></div>
-              { value }
+              {value}
             </div>
           )
         }}
@@ -328,7 +333,7 @@ const TestDemoPage = () => {
           return (
             <div style={{ display: 'flex', alignItems: 'center' }}>
               <div style={{ width: 20, height: 20, background: option.data.value, marginRight: 10 }}></div>
-              { option.data.value }
+              {option.data.value}
             </div>
           )
         }}
@@ -362,6 +367,24 @@ const TestDemoPage = () => {
       <Switch checked={showClear} onChange={onClearChanged} />
     )
   }
+  const regularPlaceOption = [
+    {
+      value: 'blur',
+      label: 'blur'
+    },
+    {
+      value: 'submit',
+      label: 'submit'
+    }
+  ]
+  const RegularPlace = ({ regularPlaceArr, setRegularPlaceArr }) => {
+    const onPlaceChanged = (e) => {
+      setRegularPlaceArr(e)
+    }
+    return (
+      <Checkbox.Group options={regularPlaceOption} onChange={onPlaceChanged} value={regularPlaceArr} />
+    )
+  }
   return (
     <div ref={testRef}>
       <InputEverywhere
@@ -383,57 +406,83 @@ const TestDemoPage = () => {
         keyBoardTitle={'传化安全键盘'}
         checkModeTo={checkModeTo}
         showClear={showClear}
+        regularPlace={regularPlaceArr}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
         <OptionPicker keyboardMode={keyboardMode} setKeyboardMode={setKeyboardMode} />
       </div>
       <div style={{ marginTop: 20 }}>
-        <span>是否乱序（仅纯数字键盘）：</span>
-        <DisOrderSetting disOrder={disOrder} setDisOrder={setDisOrder} />
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <span>切换键盘按钮指向：</span>
-        <CheckModelTo checkModeTo={checkModeTo} setCheckModeTo={setCheckModeTo} />
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <span>是否展示清除按钮：</span>
-        <ClearSetting showClear={showClear} setShowClear={setShowClear} />
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <span>是否显示隐藏按钮：</span>
+        <span>是否显示完成按钮：</span>
         <HidePicker isShowHide={isShowHide} setIsShowHide={setIsShowHide} />
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <span>输入框Size：</span>
-        <SizePicker size={size} setSize={setSize} />
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <span>展示提交按钮：</span>
-        <ButtonSetting showButton={showButton} setShowButton={setShowButton} />
       </div>
       <div style={{ marginTop: 20 }}>
         <span>主题：</span>
         <ThemePicker theme={theme} setTheme={setTheme} />
       </div>
+      <div style={{ marginTop: 20 }}>
+        <span>正则校验：</span>
+        <RegularVerification regular={regular} setRegular={setRegular} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>正则校验时机：</span>
+        <RegularPlace regularPlaceArr={regularPlaceArr} setRegularPlaceArr={setRegularPlaceArr} />
+      </div>
+      {
+        keyboardMode === 'number' && (
+          <div style={{ marginTop: 20 }}>
+            <span>是否乱序（仅纯数字键盘）：</span>
+            <DisOrderSetting disOrder={disOrder} setDisOrder={setDisOrder} />
+          </div>
+        )
+      }
+      {
+        (
+          keyboardMode === 'number'
+          || keyboardMode === 'alphabet'
+          || keyboardMode === 'numAlphabet'
+          || keyboardMode === 'symbolNum'
+        ) &&
+        (
+          <>
+            <div style={{ marginTop: 20 }}>
+              <span>切换键盘按钮指向：</span>
+              <CheckModelTo checkModeTo={checkModeTo} setCheckModeTo={setCheckModeTo} />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <span>是否展示清除按钮：</span>
+              <ClearSetting showClear={showClear} setShowClear={setShowClear} />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <span>输入框Size：</span>
+              <SizePicker size={size} setSize={setSize} />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <span>展示提交按钮：</span>
+              <ButtonSetting showButton={showButton} setShowButton={setShowButton} />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <span>光标配置：</span>
+              <CursorConfig cursorConfig={cursorConfig} setCursorConfig={setCursorConfig} />
+            </div>
+          </>
+        )
+      }
       {
         keyboardMode === 'licensePlate' && (<div style={{ marginTop: 20 }}>
           <span>车牌类型：</span>
           <LicenseTypePicker licenseType={licenseType} setLicenseType={setLicenseType} />
         </div>)
       }
-      <div style={{ marginTop: 20 }}>
-        <span>验证码配置：</span>
-        <VerificationCodePicker verificationCodeConfig={verificationCodeConfig} setVerificationCodeConfig={setVerificationCodeConfig} />
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <span>光标配置：</span>
-        <CursorConfig cursorConfig={cursorConfig} setCursorConfig={setCursorConfig} />
-      </div>
-      <div style={{ marginTop: 20 }}>
-        <span>正则校验：</span>
-        <RegularVerification regular={regular} setRegular={setRegular} />
-      </div>
+      {
+        keyboardMode === 'verificationCode' &&
+        (
+          <div style={{ marginTop: 20 }}>
+            <span>验证码配置：</span>
+            <VerificationCodePicker verificationCodeConfig={verificationCodeConfig} setVerificationCodeConfig={setVerificationCodeConfig} />
+          </div>
+        )
+      }
     </div>
   )
 }

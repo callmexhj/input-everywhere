@@ -16,6 +16,7 @@ function InputEverywhere({
   style = null,
   disOrder = false,
   regular = null,
+  regularPlace = [],
   cursorConfig = {
     show: true,
     blink: true
@@ -27,10 +28,10 @@ function InputEverywhere({
     autocommit: false,
     autoclose: true
   },
-  onFocus = () => {},
-  onBlur = () => {},
-  onSubmit = () => {},
-  onRegular = () => {}
+  onFocus = () => { },
+  onBlur = () => { },
+  onSubmit = () => { },
+  onRegular = () => { }
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -42,6 +43,11 @@ function InputEverywhere({
   const prevKeyBoardModeInnerRef = useRef('alphabet')
   const checkTextValue = useRef('')
   const checkRule = useRef(null)
+  const regularPlaceRef = useRef(regularPlace)
+
+  useEffect(() => {
+    regularPlaceRef.current = regularPlace
+  }, [regularPlace])
 
   useEffect(() => {
     checkRule.current = regular
@@ -75,8 +81,7 @@ function InputEverywhere({
   const handleOnBlur = () => {
     setShowSoftKeyboard(false)
     onBlur && onBlur()
-    console.log(regular)
-    if (checkRule.current?.test) {
+    if (regularPlaceRef.current?.indexOf('blur') !== -1 && checkRule.current?.test) {
       onRegular && onRegular(checkReg(checkTextValue.current))
     }
   }
@@ -87,6 +92,9 @@ function InputEverywhere({
 
   const handleSubmit = (e) => {
     onSubmit && onSubmit(e)
+    if (regularPlaceRef.current?.indexOf('submit') !== -1 && checkRule.current?.test) {
+      onRegular && onRegular(checkReg(checkTextValue.current))
+    }
   }
 
   const checkReg = (e) => {
@@ -139,9 +147,9 @@ function InputEverywhere({
     disOrder
   }
   return (
-    <div className={className} style={{...style}}>
-      <InputContent { ...inputContentProps } />
-      <SoftKeyboard { ...softKeyboardProps } />
+    <div className={className} style={{ ...style }}>
+      <InputContent {...inputContentProps} />
+      <SoftKeyboard {...softKeyboardProps} />
     </div>
   )
 }

@@ -53,7 +53,8 @@ export default App
 |className,  |传入组件的样式类|string|-|
 |style|传入组件的样式|object|-|
 |disOrder|是否乱序显示数字键盘（仅当mode为number时生效）|boolean|false|
-|regular|传入一个正则表达式，在blur时触发校验onBlur事件|object|null|
+|regular|传入一个正则表达式，在regularPlace指定的时机触发校验|object|null|
+|regularPlace|指定正则校验的时机|['blur', 'submit']/['blur']/['submit']|[]|
 |cursorConfig|光标配置项|CursorConfig||
 |verificationCodeConfig|验证码模式配置项（仅在mode为verificationCode时生效）|VerificationCodeConfig||
 | onFocus  | 输入框聚焦事件 |( ) => void|-|

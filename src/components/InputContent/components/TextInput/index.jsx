@@ -25,7 +25,6 @@ const TextInput = ({
     if (show) {
       return (
         inputValueArray.map((item, index) => {
-          // console.log(inputValueArray, item, index)
           if (index === cursorPosition) {
             return (
               <div key={index} className={styles.cursorContainer}>
@@ -70,7 +69,6 @@ const TextInput = ({
   }
 
   const handleCursorMove = (swipeDirection) => {
-    console.log(swipeDirection, cursorPosition)
     if (swipeDirection === 'left') setCursorPosition(cursorPosition - 1 < 0 ? 0 : cursorPosition - 1)
     else if (swipeDirection === 'right') setCursorPosition(cursorPosition + 1 > inputValueArray.length - 1 ? inputValueArray.length - 1 : cursorPosition + 1)
     setSwipeDirection(null)
