@@ -1,9 +1,9 @@
 # Input-Everywhere
 
-### Gitgub 地址
+### Github 地址
 [https://github.com/callmexhj/input-everywhere](https://github.com/callmexhj/input-everywhere)
 
-### NPM包地址
+### NPM包线上地址
 [https://www.npmjs.com/package/input-everywhere](https://www.npmjs.com/package/input-everywhere)
 
 ## 快速上手
@@ -78,4 +78,16 @@ export default App
 | onlyCapitalized  | 控制字母键盘仅支持输入大写（仅当mode中包含alphabet时生效） |number|6|
 | autocommit  | 当输入的位数超过最大长度时候，自动触发onSubmit事件 |boolean|false|
 | autoclose  | 当autocommit时，收起键盘 |boolean|true|
+
+## 发布组件
+### 修改package.json
+```js
+"version": "1.1.1",//修改版本号，需要与上一版本不同
+```
+### 发布npm
+```
+nrm use npm //可选，切换到npm源
+npm login //可选，登录到npm
+npm publish
+```
 
