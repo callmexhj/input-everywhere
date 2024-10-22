@@ -41,13 +41,14 @@ export default App
 |  属性   | 说明  |类型|默认值|
 |  ----  | ----  |---|---|
 | size  | 设置输入框大小 |big/default/small|'big'|
-| keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/licensePlate/verificationCode|number|
+| keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/licensePlate/verificationCode/symbolNum|number|
 |showHide   |设置是否展示键盘顶部的标题和缩小键盘按键|boolean|true|
 | keyBoardTitle  | 键盘顶部标题的文本（仅当showHide为true时生效） |string|传化安全键盘|
 | showButton  | 是否右下角的操作按钮（点击时触发onSubmit事件） |boolean|true|
 | buttonText  | 键盘右下角操作按钮的文本（仅当showButton为true时生效） |string|确认|
 | theme  | 键盘主题 |string|#1677FF|
 | licenseType  | 车牌类型(绿牌8位，常规车牌7位) |green/default|default|
+| checkModeTo  | mode为numAlphabet和alphabet时，指定左下角键盘切换按钮的切换目标类型 |number/symbolNum|symbolNum|
 |className,  |传入组件的样式类|string|-|
 |style|传入组件的样式|object|-|
 |disOrder|是否乱序显示数字键盘（仅当mode为number时生效）|boolean|false|

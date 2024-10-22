@@ -1,0 +1,54 @@
+.symbolNumBoard {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+
+  .normalLine {
+    display: flex;
+    gap: 4.3px;
+
+    .normalKey {
+      height: 42px;
+      background-color: #ffffff;
+      border-radius: 4px;
+      flex: 1;
+      font-weight: normal;
+      line-height: 24px;
+      text-align: center;
+      letter-spacing: 0px;
+      /* 中性色/11强调、正文标题 */
+      color: #262B33;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.17);
+    }
+
+    .normalKey:active {
+      background-color: #00000010;
+    }
+
+    .toolKey {
+      color: #ffffff;
+    }
+
+    .submitKey {
+      color: #fff;
+      flex: 1;
+    }
+
+    .spacekey {
+      flex: 2;
+    }
+
+    .emptyKey {
+      background: #DFE2E5;
+    }
+
+    .icoImg {
+      height: 20px;
+      width: 20px;
+    }
+  }
+}

@@ -4,6 +4,7 @@ import AlphabetKeyboard from './AlphabetKeyboard'
 import LicensePlateKeyBoard from './LicensePlateKeyBoard'
 import NumAlphabetKeyboard from './NumAlphabetKeyboard'
 import LicensePlateAlphabetNumKeyBoard from './LicensePlateAlphabetNumKeyBoard'
+import SymbolNumBoard from './SymbolNumBoard'
 import { useEffect } from 'react'
 import SafeicoPNG from '../../assets/safeico.png'
 
@@ -30,6 +31,7 @@ const SoftKeyboard = ({
     setKeyboardModeInner,
     licenseType,
     keyBoardTitle,
+    checkModeTo,
     disOrder
 }) => {
 
@@ -50,7 +52,7 @@ const SoftKeyboard = ({
     }, [mode])
     const onInput = (e) => {
         if (e === 'backspace') {
-            
+
             if (cursorConfig?.show) {
                 const oldValue = inputValue?.split('')
                 const newValue = [...oldValue.slice(0, cursorPosition - 1), ...oldValue.slice(cursorPosition)]
@@ -60,13 +62,13 @@ const SoftKeyboard = ({
                 const newValue = inputValue.slice(0, inputValue.length - 1)
                 setInputValue(newValue)
             }
-            
+
         } else if (e === 'capitalization') {
             setIsCapitalized(!isCapitalized)
         } else if (e === 'submit') {
             // 提交
             onSubmit && onSubmit(`${inputValue}${e}`)
-        } else if (e === 'change-number' || e === 'change-alphabet' || e === 'change-numAlphabet') {
+        } else if (e === 'change-number' || e === 'change-alphabet' || e === 'change-numAlphabet' || e === 'change-symbolNum') {
             // 提交
             switch (e) {
                 case 'change-number': {
@@ -79,6 +81,10 @@ const SoftKeyboard = ({
                 }
                 case 'change-numAlphabet': {
                     setKeyboardModeInner('numAlphabet')
+                    break
+                }
+                case 'change-symbolNum': {
+                    setKeyboardModeInner('symbolNum')
                     break
                 }
             }
@@ -118,7 +124,7 @@ const SoftKeyboard = ({
                     setCursorPosition(cursorPosition + 1 > newValue.length - 1 ? newValue.length : cursorPosition + 1)
                     return
                 }
-                
+
             } else {
                 const newValue = `${inputValue}${e}`
                 setInputValue(newValue)
@@ -135,27 +141,60 @@ const SoftKeyboard = ({
                     showButton={showButton}
                     buttonText={buttonText}
                     onInput={onInput}
-                    disOrder= {disOrder}
+                    disOrder={disOrder}
                 />
             )
         }
         if (mode === 'alphabet') {
             return (
-                <AlphabetKeyboard theme={theme} showButton={showButton} buttonText={buttonText} isCapitalized={isCapitalized} onInput={onInput} />
+                <AlphabetKeyboard
+                    theme={theme}
+                    checkModeTo={checkModeTo}
+                    showButton={showButton}
+                    buttonText={buttonText}
+                    isCapitalized={isCapitalized}
+                    lastModeMemory={lastModeMemory}
+                    onInput={onInput}
+                />
             )
         }
         if (mode === 'numAlphabet') {
             return (
-                <NumAlphabetKeyboard theme={theme} showButton={showButton} buttonText={buttonText} onInput={onInput} isCapitalized={isCapitalized} mode={mode} />
+                <NumAlphabetKeyboard
+                    checkModeTo={checkModeTo}
+                    theme={theme}
+                    showButton={showButton}
+                    buttonText={buttonText}
+                    onInput={onInput}
+                    isCapitalized={isCapitalized}
+                    mode={mode}
+                />
+            )
+        }
+        if (mode === 'symbolNum') {
+            return (
+                <SymbolNumBoard
+                    onInput={onInput}
+                    theme={theme}
+                    showButton={showButton}
+                    buttonText={buttonText}
+                    lastModeMemory={lastModeMemory}
+                />
             )
         }
         if (mode === 'licensePlate' && inputValue.length >= 1) {
             return (
-                <LicensePlateAlphabetNumKeyBoard onInput={onInput} />
+                <LicensePlateAlphabetNumKeyBoard
+                    onInput={onInput}
+                    theme={theme}
+                />
             )
         } else if (mode === 'licensePlate') {
             return (
-                <LicensePlateKeyBoard onInput={onInput} theme={theme} />
+                <LicensePlateKeyBoard
+                    onInput={onInput}
+                    theme={theme}
+                />
             )
         }
         if (mode === 'verificationCode') {
@@ -172,11 +211,18 @@ const SoftKeyboard = ({
                 )
             } else if (verificationCodeConfig.mode.length === 1 && verificationCodeConfig.mode[0] === 'alphabet') {
                 return (
-                    <AlphabetKeyboard isCapitalized={onlyCapitalized ? true : isCapitalized} onInput={onInput} />
+                    <AlphabetKeyboard
+                        isCapitalized={onlyCapitalized ? true : isCapitalized}
+                        onInput={onInput}
+                    />
                 )
             } else {
                 return (
-                    <NumAlphabetKeyboard onInput={onInput} mode={mode} isCapitalized={onlyCapitalized ? true : isCapitalized} />
+                    <NumAlphabetKeyboard
+                        onInput={onInput}
+                        mode={mode}
+                        isCapitalized={onlyCapitalized ? true : isCapitalized}
+                    />
                 )
             }
 
@@ -187,7 +233,7 @@ const SoftKeyboard = ({
             <div className={styles.toolbar}>
                 <div className={styles.keyboardTitle} >
                     <img src={SafeicoPNG} />
-                    { keyBoardTitle }
+                    {keyBoardTitle}
                 </div>
                 <div className={styles.closeBar} style={{ color: theme || '#1677FF' }} onClick={() => onHide()}>完成</div>
             </div>

@@ -9,6 +9,8 @@ const AlphabetKeyboard = ({
     onInput,
     showButton,
     buttonText,
+    checkModeTo,
+    lastModeMemory,
     theme
 }) => {
     const firstLineKeysCapitalized = ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P']
@@ -59,7 +61,7 @@ const AlphabetKeyboard = ({
             <div className={styles.fourthLineKeys}>
                 {
                     showButton && (
-                        <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('change-number')}>123</div>
+                        <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown(`change-${checkModeTo === 'number' && lastModeMemory !== 'symbolNum' ? 'number' : 'symbolNum'}`)}>123</div>
                     )
                 }
                 <div className={`${styles.key} ${styles.spaceKey} ${showButton ? '' : styles.widerSpaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>

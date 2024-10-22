@@ -10,6 +10,7 @@ const NumAlphabetKeyboard = ({
     isCapitalized,
     showButton,
     buttonText,
+    checkModeTo,
     theme
 }) => {
     const numberKey = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
@@ -64,7 +65,7 @@ const NumAlphabetKeyboard = ({
                 <div className={styles.fourthLineKeys}>
                     {
                         showButton && (
-                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown('change-number')}>123</div>
+                            <div className={styles.toolKey} style={{ background: theme || '#1677FF' }} onClick={() => handleOnKeyDown(`change-${checkModeTo === 'number' ? 'number' : 'symbolNum'}`)}>123</div>
                         )
                     }
                     <div className={`${styles.key} ${styles.spaceKey} ${showButton ? '' : styles.widerSpaceKey}`} onClick={() => handleOnKeyDown('\u0020')}>

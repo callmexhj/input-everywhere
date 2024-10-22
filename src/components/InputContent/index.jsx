@@ -60,7 +60,7 @@ const InputContent = ({
                 onFocus={handleFocus}
                 isFocus={isFocus.current}
             />
-        } else if (mode === 'number' || mode === 'alphabet' || mode === 'numAlphabet') {
+        } else if (mode === 'number' || mode === 'alphabet' || mode === 'numAlphabet' || mode === 'symbolNum') {
             return (
                 <TextInput
                     onFocus={handleFocus}

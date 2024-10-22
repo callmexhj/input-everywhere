@@ -25,6 +25,7 @@ const TestDemoPage = () => {
   const testRef = useRef(null)
   const [showButton, setShowButton] = useState(true)
   const [theme, setTheme] = useState('#1677FF')
+  const [checkModeTo, setCheckModeTo] = useState('symbolNum')
   const keyboardTypeOptions = [
     {
       label: '纯数字',
@@ -45,6 +46,10 @@ const TestDemoPage = () => {
     {
       label: '验证码',
       value: 'verificationCode'
+    },
+    {
+      label: '数字符号',
+      value: 'symbolNum'
     }
   ]
 
@@ -102,13 +107,10 @@ const TestDemoPage = () => {
 
   const onFocus = () => {
     console.log('focus')
-    // testRef.current.style.bottom = '100px'
-    // testRef.current.style.position = 'relative'
   }
 
   const onBlur = () => {
     console.log('blur')
-    // testRef.current.style.bottom = null
   }
 
   const onSubmit = (value) => {
@@ -332,6 +334,24 @@ const TestDemoPage = () => {
       />
     )
   }
+  const checkModeOptions = [
+    {
+      label: '纯数字',
+      value: 'number',
+    },
+    {
+      label: '数字+符号',
+      value: 'symbolNum',
+    }
+  ]
+  const CheckModelTo = ({ checkModeTo, setCheckModeTo }) => {
+    const onModeChanged = ({ target: { value } }) => {
+      setCheckModeTo(value)
+    }
+    return (
+      <Radio.Group options={checkModeOptions} onChange={onModeChanged} value={checkModeTo} />
+    )
+  }
   return (
     <div ref={testRef}>
       <InputEverywhere
@@ -351,6 +371,7 @@ const TestDemoPage = () => {
         theme={theme}
         disOrder={disOrder}
         keyBoardTitle={'传化安全键盘'}
+        checkModeTo={checkModeTo}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
@@ -359,6 +380,10 @@ const TestDemoPage = () => {
       <div style={{ marginTop: 20 }}>
         <span>是否乱序（仅纯数字键盘）：</span>
         <DisOrderSetting disOrder={disOrder} setDisOrder={setDisOrder} />
+      </div>
+      <div style={{ marginTop: 20 }}>
+        <span>切换键盘按钮指向：</span>
+        <CheckModelTo checkModeTo={checkModeTo} setCheckModeTo={setCheckModeTo} />
       </div>
       <div style={{ marginTop: 20 }}>
         <span>是否显示隐藏按钮：</span>
