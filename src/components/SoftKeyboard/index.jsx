@@ -100,7 +100,7 @@ const SoftKeyboard = ({
                 }
             }
             if (mode === 'verificationCode') {
-                const { length, autocommit, autoclose } = verificationCodeConfig
+                const { length = 6, autocommit = false, autoclose = true } = verificationCodeConfig
                 if (autocommit && inputValue.length === length - 1) {
                     // 自动提交
                     onSubmit && onSubmit(`${inputValue}${e}`)
@@ -198,7 +198,8 @@ const SoftKeyboard = ({
             )
         }
         if (mode === 'verificationCode') {
-            const { onlyCapitalized } = verificationCodeConfig
+            const { onlyCapitalized = true } = verificationCodeConfig
+            if (!verificationCodeConfig.mode) verificationCodeConfig.mode = ['alphabet', 'number']
             if (verificationCodeConfig.mode.length === 1 && verificationCodeConfig.mode[0] === 'number') {
                 return (
                     <NumberKeyboard

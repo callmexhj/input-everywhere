@@ -2,6 +2,7 @@ import { memo, useState, useRef, useEffect } from 'react'
 import InputContent from './components/InputContent'
 import SoftKeyboard from './components/SoftKeyboard'
 function InputEverywhere({
+  defaultValue = '',
   size = 'big',
   keyboardMode = 'number',
   showHide = true,
@@ -44,6 +45,31 @@ function InputEverywhere({
   const checkTextValue = useRef('')
   const checkRule = useRef(null)
   const regularPlaceRef = useRef(regularPlace)
+  // const givenValueRef = useRef(defaultValue)
+
+  useEffect(() => {
+    if (keyBoardModeInner === 'licensePlate') {
+      let licensePlateDig = 7
+      if (licenseType === 'green') {
+        licensePlateDig = 8
+      }
+      const newValue = defaultValue.slice(0, licensePlateDig)
+      setInputValue(newValue)
+      setCursorPosition(newValue.length)
+      return
+    } else if (keyBoardModeInner === 'verificationCode') {
+      let codeDig = 0
+      if (verificationCodeConfig.length && verificationCodeConfig.length > 0) {
+        codeDig = verificationCodeConfig.length
+      }
+      const newValue = defaultValue.slice(0, codeDig)
+      setInputValue(newValue)
+      setCursorPosition(newValue.length)
+      return
+    }
+    setInputValue(defaultValue)
+    setCursorPosition(defaultValue.length)
+  }, [defaultValue])
 
   useEffect(() => {
     regularPlaceRef.current = regularPlace

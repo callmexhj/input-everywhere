@@ -3,10 +3,7 @@ import styles from './index.module.less'
 
 const VerificationCode = ({
     inputRef,
-    length,
-    mode,
-    onlyCapitalized,
-    autocommit,
+    length = 6,
     inputValue,
     onFocus,
     setInputValue,

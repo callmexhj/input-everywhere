@@ -40,6 +40,7 @@ export default App
 
 |  属性   | 说明  |类型|默认值|
 |  ----  | ----  |---|---|
+| defaultValue  | 默认值 |string|-|
 | size  | 设置输入框大小 |big/default/small|'big'|
 | keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/symbolNum/licensePlate/verificationCode|number|
 |showHide   |设置是否展示键盘顶部的标题和缩小键盘按键|boolean|true|

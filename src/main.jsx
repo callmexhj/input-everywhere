@@ -4,7 +4,7 @@ import InputEverywhere from './App.jsx'
 import { Radio, Col, InputNumber, Row, Slider, Checkbox, Switch, Select } from 'antd'
 import './index.css'
 const TestDemoPage = () => {
-  const [keyboardMode, setKeyboardMode] = useState('number')
+  const [keyboardMode, setKeyboardMode] = useState('verificationCode')
   const [isShowHide, setIsShowHide] = useState(true)
   const [size, setSize] = useState('big')
   const [disOrder, setDisOrder] = useState(false)
@@ -407,6 +407,7 @@ const TestDemoPage = () => {
         checkModeTo={checkModeTo}
         showClear={showClear}
         regularPlace={regularPlaceArr}
+        // defaultValue={'xxxxxxxxxx'}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
