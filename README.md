@@ -65,6 +65,7 @@ export default App
 | theme  | 键盘主题 |string|#1677FF|
 |verificationCodeConfig|验证码模式配置项（仅在mode为verificationCode时生效）|VerificationCodeConfig||
 | onBlur  | 输入框失焦事件 |( ) => void|-|
+| onChange  | 输入时的回调 |( ) => void|-|
 | onFocus  | 输入框聚焦事件 |( ) => void|-|
 | onSubmit  | 提交事件 |(value: string) => void|-|
 | onRegular  | 正则校验结果（需要首先传入正则表达式regular） |(boolean: boolean) => void|-|
