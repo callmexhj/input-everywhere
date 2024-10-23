@@ -473,6 +473,7 @@ const TestDemoPage = () => {
           || keyboardMode === 'alphabet'
           || keyboardMode === 'numAlphabet'
           || keyboardMode === 'symbolNum'
+          || keyboardMode === 'money'
         ) &&
         (
           <>
