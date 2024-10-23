@@ -21,12 +21,14 @@ yarn add input-everywhere
 ```js
 import {InputEverywhere} from 'input-everywhere'
 import 'input-everywhere/style'
+// 低版本node环境下：import 'input-everywhere/dist/style.css'
 ```
 
 ### 示例
 ```js
 import {InputEverywhere} from 'input-everywhere'
 import 'input-everywhere/style'
+// 低版本node环境下：import 'input-everywhere/dist/style.css'
 
 const App = () => {
   return <InputEverywhere />
