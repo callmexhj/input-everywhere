@@ -70,8 +70,6 @@ const SoftKeyboard = ({
             // 提交
             onSubmit && onSubmit(`${inputValue}`)
             if (hideAfterSubmit) {
-                // 自动提交
-                onSubmit && onSubmit(`${inputValue}${e}`)
                 setShowSoftKeyboard(false)
             }
         } else if (e === 'change-number' || e === 'change-alphabet' || e === 'change-numAlphabet' || e === 'change-symbolNum') {

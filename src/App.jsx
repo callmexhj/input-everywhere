@@ -1,4 +1,4 @@
-import { memo, useState, useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import InputContent from './components/InputContent'
 import SoftKeyboard from './components/SoftKeyboard'
 function InputEverywhere({
@@ -36,7 +36,8 @@ function InputEverywhere({
   onFocus = () => { },
   onBlur = () => { },
   onSubmit = () => { },
-  onRegular = () => { }
+  onRegular = () => { },
+  onChange = () => { }
 }) {
   const [showSoftKeyboard, setShowSoftKeyboard] = useState(false)
   const [inputValue, setInputValue] = useState('')
@@ -106,6 +107,7 @@ function InputEverywhere({
 
   useEffect(() => {
     checkTextValue.current = inputValue
+    onChange && onChange(inputValue)
   }, [inputValue])
 
   const handleOnBlur = () => {

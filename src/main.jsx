@@ -133,6 +133,9 @@ const TestDemoPage = () => {
       console.log('校验失败')
     }
   }
+  const onChange = (e) => {
+    console.log('onChange', e)
+  }
 
   const OptionPicker = ({ keyboardMode, setKeyboardMode }) => {
     const onKeyboardModeChanged = ({ target: { value } }) => {
@@ -416,6 +419,7 @@ const TestDemoPage = () => {
         onFocus={onFocus}
         onBlur={onBlur}
         onSubmit={onSubmit}
+        onChange={onChange}
         licenseType={licenseType}
         verificationCodeConfig={verificationCodeConfig}
         cursorConfig={cursorConfig}
