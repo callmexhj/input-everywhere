@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { CloseCircleOutlined } from '@ant-design/icons'
+import ClosePNG from '@/assets/close.png'
 import styles from './index.module.less'
 const TextInput = ({
   onFocus,
@@ -98,7 +98,7 @@ const TextInput = ({
       </div>
       {
         showClear && (
-          <CloseCircleOutlined className={styles.closeIco} onClick={() => !disabled && onClear()}/>
+          <img src={ClosePNG} className={styles.closeIco} onClick={() => !disabled && onClear()} />
         )
       }
     </div>
