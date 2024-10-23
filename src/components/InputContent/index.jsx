@@ -20,6 +20,7 @@ const InputContent = ({
     showClear,
     foucs,
     disabled,
+    password,
     onClear
 }) => {
     const isFocus = useRef(false)
@@ -82,6 +83,7 @@ const InputContent = ({
                     setCursorPosition={setCursorPosition}
                     isFocus={isFocus.current}
                     showClear={showClear}
+                    password={password}
                 />
             )
         } else if (mode === 'verificationCode') {
@@ -93,6 +95,7 @@ const InputContent = ({
                     setInputValue={setInputValue}
                     onFocus={handleFocus}
                     isFocus={isFocus.current}
+                    password={password}
                 />
         }
     }

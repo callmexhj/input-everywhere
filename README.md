@@ -48,9 +48,11 @@ export default App
 | disabled  | 是否禁用键盘 |boolean|false|
 |disOrder|是否乱序显示数字键盘（仅当mode为number时生效）|boolean|false|
 |focus|默认的聚焦状态|boolean|false|
+|hideAfterSubmit|提交后是否收起键盘|boolean|true|
 | keyboardMode  | 设置键盘模式 |number/alphabet/numAlphabet/symbolNum/licensePlate/verificationCode|number|
 | keyBoardTitle  | 键盘顶部标题的文本（仅当showHide为true时生效） |string|传化安全键盘|
 | licenseType  | 车牌类型(绿牌8位，常规车牌7位) |green/default|default|
+| password  | 是否使用密码模式（当mode为licensePlate时不生效） |boolean|false|
 |regular|传入一个正则表达式，在regularPlace指定的时机触发校验|object|null|
 |regularPlace|指定正则校验的时机|['blur', 'submit']/['blur']/['submit']|[]|
 | size  | 设置输入框大小 |big/default/small|'big'|

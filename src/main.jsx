@@ -11,6 +11,7 @@ const TestDemoPage = () => {
   const [licenseType, setLicenseType] = useState('default')
   const [showClear, setShowClear] = useState(true)
   const [disabled, setDisabled] = useState(false)
+  const [isPassword, setIsPassword] = useState(false)
   const [verificationCodeConfig, setVerificationCodeConfig] = useState({
     length: 6,
     mode: ['number', 'alphabet'],
@@ -29,6 +30,7 @@ const TestDemoPage = () => {
   const [theme, setTheme] = useState('#1677FF')
   const [checkModeTo, setCheckModeTo] = useState('symbolNum')
   const [regularPlaceArr, setRegularPlaceArr] = useState(['blur', 'submit'])
+  const [isHideAfterSubmit, setIsHideAfterSubmit] = useState(true)
   const keyboardTypeOptions = [
     {
       label: '纯数字',
@@ -395,6 +397,16 @@ const TestDemoPage = () => {
       <Switch checked={disabled} onChange={setDisabled} />
     )
   }
+  const HideAfterSubmit = ({ isHideAfterSubmit, setIsHideAfterSubmit }) => {
+    return (
+      <Switch checked={isHideAfterSubmit} onChange={setIsHideAfterSubmit} />
+    )
+  }
+  const PasswordModeSetting = ({ passwordMode, setPasswordMode }) => {
+    return (
+      <Switch checked={passwordMode} onChange={setPasswordMode} />
+    )
+  }
   return (
     <div ref={testRef}>
       <InputEverywhere
@@ -418,6 +430,8 @@ const TestDemoPage = () => {
         showClear={showClear}
         regularPlace={regularPlaceArr}
         disabled={disabled}
+        hideAfterSubmit={isHideAfterSubmit}
+        password={isPassword}
         // foucs={true}
         // defaultValue={'xxxxxxxxxx'}
       />
@@ -467,12 +481,20 @@ const TestDemoPage = () => {
               <CheckModelTo checkModeTo={checkModeTo} setCheckModeTo={setCheckModeTo} />
             </div>
             <div style={{ marginTop: 20 }}>
+              <span>submit后是否隐藏键盘：</span>
+              <HideAfterSubmit isHideAfterSubmit={isHideAfterSubmit} setIsHideAfterSubmit={setIsHideAfterSubmit} />
+            </div>
+            <div style={{ marginTop: 20 }}>
               <span>是否展示清除按钮：</span>
               <ClearSetting showClear={showClear} setShowClear={setShowClear} />
             </div>
             <div style={{ marginTop: 20 }}>
               <span>输入框Size：</span>
               <SizePicker size={size} setSize={setSize} />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <span>密码模式：</span>
+              <PasswordModeSetting passwordMode={isPassword} setPasswordMode={setIsPassword} />
             </div>
             <div style={{ marginTop: 20 }}>
               <span>展示提交按钮：</span>

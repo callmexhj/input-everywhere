@@ -12,6 +12,7 @@ const TextInput = ({
   onClear,
   showClear,
   disabled,
+  password,
   setCursorPosition
 }) => {
   const [touchStartX, setTouchStartX] = useState(null)
@@ -30,11 +31,11 @@ const TextInput = ({
             return (
               <div key={index} className={styles.cursorContainer}>
                 <div style={{ display: isFocus ? 'block' : 'none' }} className={`${styles.cursor} ${blink ? styles.cursorBlink : ''}`}></div>
-                <span key={index}>{item}</span>
+                <span key={index}>{password ? (item === '' ? '' : '*') : item}</span>
               </div>
             )
           } else {
-            return <span key={index}>{item}</span>
+            return <span key={index}>{password ? '*' : item}</span>
           }
         })
       )

@@ -20,6 +20,8 @@ function InputEverywhere({
   regularPlace = [],
   foucs = false,
   disabled = false,
+  hideAfterSubmit = true,
+  password = false,
   cursorConfig = {
     show: true,
     blink: true
@@ -144,6 +146,7 @@ function InputEverywhere({
     showClear,
     foucs,
     disabled,
+    password,
     onClear,
     setCursorPosition,
     setInputValue,
@@ -167,6 +170,7 @@ function InputEverywhere({
     lastModeMemory,
     keyBoardTitle,
     checkModeTo,
+    hideAfterSubmit,
     setCursorPosition,
     onHide,
     setIsCapitalized,

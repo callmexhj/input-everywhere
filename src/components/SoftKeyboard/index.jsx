@@ -32,6 +32,7 @@ const SoftKeyboard = ({
     licenseType,
     keyBoardTitle,
     checkModeTo,
+    hideAfterSubmit,
     disOrder
 }) => {
 
@@ -68,6 +69,11 @@ const SoftKeyboard = ({
         } else if (e === 'submit') {
             // 提交
             onSubmit && onSubmit(`${inputValue}`)
+            if (hideAfterSubmit) {
+                // 自动提交
+                onSubmit && onSubmit(`${inputValue}${e}`)
+                setShowSoftKeyboard(false)
+            }
         } else if (e === 'change-number' || e === 'change-alphabet' || e === 'change-numAlphabet' || e === 'change-symbolNum') {
             // 提交
             switch (e) {
