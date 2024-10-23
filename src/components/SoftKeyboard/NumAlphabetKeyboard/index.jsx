@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
 import styles from './index.module.less'
-import backspacePNG from '../../../assets/backspace.png'
-import capitalizationPNG from '../../../assets/capitalization.png'
-import capitalizationSolidPNG from '../../../assets/capitalization-solid.png'
+import backspacePNG from '@/assets/backspace.png'
+import capitalizationPNG from '@/assets/capitalization.png'
+import capitalizationSolidPNG from '@/assets/capitalization-solid.png'
 
 const NumAlphabetKeyboard = ({
     onInput,

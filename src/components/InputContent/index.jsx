@@ -53,7 +53,7 @@ const InputContent = ({
         if (foucs) {
             handleFocus()
         }
-        document.addEventListener('mousedown', handleClickOutside)
+        document.addEventListener('mousedown', handleClickOutside, { passive: false })
         return () => {
             document.removeEventListener('mousedown', handleClickOutside)
         }

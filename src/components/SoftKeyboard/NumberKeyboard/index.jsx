@@ -1,5 +1,5 @@
 import styles from './index.module.less'
-import backspacePNG from '../../../assets/backspace-black.png'
+import backspacePNG from '@/assets/backspace-black.png'
 import { useEffect, useState } from 'react'
 
 const NumberKeyboard = ({

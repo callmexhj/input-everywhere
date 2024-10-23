@@ -1,5 +1,5 @@
 import styles from './index.module.less'
-import backspacePNG from '../../../assets/backspace.png'
+import backspacePNG from '@/assets/backspace.png'
 const LicensePlateKeyBoard = ({ onInput, theme }) => {
     const firstLicensePlateKey = [
         '京',

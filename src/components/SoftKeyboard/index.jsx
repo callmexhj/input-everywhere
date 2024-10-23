@@ -6,7 +6,7 @@ import NumAlphabetKeyboard from './NumAlphabetKeyboard'
 import LicensePlateAlphabetNumKeyBoard from './LicensePlateAlphabetNumKeyBoard'
 import SymbolNumBoard from './SymbolNumBoard'
 import { useEffect } from 'react'
-import SafeicoPNG from '../../assets/safeico.png'
+import SafeicoPNG from '@/assets/safeico.png'
 
 const SoftKeyboard = ({
     show,

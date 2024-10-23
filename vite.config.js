@@ -11,6 +11,11 @@ export default defineConfig({
     }
   },
   plugins: [react()],
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  },
   build: {
     lib: {
       entry: 'src/index.jsx', // 指定组件的入口文件
@@ -19,7 +24,7 @@ export default defineConfig({
     },
     cssCodeSplit: false,
     rollupOptions: {
-      external: ['react', 'react-dom'],
+      external: ['react', 'react-dom', 'antd'],
       output: {
         globals: {
           react: 'React',
