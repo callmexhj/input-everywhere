@@ -432,8 +432,8 @@ const TestDemoPage = () => {
         disabled={disabled}
         hideAfterSubmit={isHideAfterSubmit}
         password={isPassword}
-        // foucs={true}
-        // defaultValue={'xxxxxxxxxx'}
+      // foucs={true}
+      // defaultValue={'xxxxxxxxxx'}
       />
       <div style={{ marginTop: 20 }}>
         <span>输入类型：</span>
@@ -516,10 +516,17 @@ const TestDemoPage = () => {
       {
         keyboardMode === 'verificationCode' &&
         (
-          <div style={{ marginTop: 20 }}>
-            <span>验证码配置：</span>
-            <VerificationCodePicker verificationCodeConfig={verificationCodeConfig} setVerificationCodeConfig={setVerificationCodeConfig} />
-          </div>
+          <>
+            <div style={{ marginTop: 20 }}>
+              <span>验证码配置：</span>
+              <VerificationCodePicker verificationCodeConfig={verificationCodeConfig} setVerificationCodeConfig={setVerificationCodeConfig} />
+            </div>
+            <div style={{ marginTop: 20 }}>
+              <span>密码模式：</span>
+              <PasswordModeSetting passwordMode={isPassword} setPasswordMode={setIsPassword} />
+            </div>
+          </>
+
         )
       }
     </div>

@@ -7,7 +7,8 @@ const VerificationCode = ({
     inputValue,
     onFocus,
     setInputValue,
-    isFocus
+    isFocus,
+    password
 }) => {
     const [verificationCodeArray, setVerificationCodeArray] = useState([])
 
@@ -44,7 +45,7 @@ const VerificationCode = ({
                     className={`${styles.verificationCodeItem} ${index === inputValue?.length ? ( isFocus ? styles.actItem : null ) : ''}`}
                     key={index}
                 >
-                    {item}
+                    {password ? item === '' ? '' : '*' : item}
                 </div>
             )
         })
